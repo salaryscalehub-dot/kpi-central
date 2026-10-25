@@ -219,6 +219,29 @@
       html { scroll-behavior:auto; }
       *,*::before,*::after { transition:none !important; }
     }
+  
+    .product-screens { padding: 78px 0 84px; }
+    .product-screens .section-head { margin-bottom: 32px; }
+    .screens-browser { display: grid; grid-template-columns: minmax(0,1fr) 255px; gap: 18px; align-items: stretch; }
+    .screen-shot { min-width: 0; margin: 0; padding: 11px; border: 1px solid var(--line); border-radius: 17px; background: white; box-shadow: var(--shadow); }
+    .screen-shot img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 750; object-fit: contain; background: #142d49; border-radius: 9px; }
+    .screen-shot figcaption { display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; padding-inline: 2px; color: #8291a0; font-size: 9px; }
+    .screen-shot figcaption span:first-child { direction: ltr; text-align: left; letter-spacing: .05em; }
+    .screen-side { display: flex; flex-direction: column; justify-content: center; gap: 15px; }
+    .screen-tabs { display: grid; gap: 7px; }
+    .screen-tab { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-height: 43px; padding: 8px 11px; border: 1px solid var(--line); border-radius: 9px; background: white; color: var(--muted); text-align: right; font-size: 11px; font-weight: 650; cursor: pointer; transition: .2s ease; }
+    .screen-tab:hover { border-color: #b8c6d3; transform: translateY(-1px); }
+    .screen-tab[aria-selected="true"] { background: var(--blue-dark); border-color: var(--blue-dark); color: white; }
+    .screen-tab small { color: #8192a3; font-size: 8px; direction: ltr; letter-spacing: .04em; }
+    .screen-tab[aria-selected="true"] small { color: #c6d7e2; }
+    .screen-info { padding: 14px 14px 12px; border-inline-start: 2px solid var(--teal); background: rgba(255,255,255,.7); }
+    .screen-info .eyebrow { font-size: 9px; }
+    .screen-info h3 { margin: 8px 0 5px; color: var(--blue-dark); font-size: 16px; }
+    .screen-info p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.85; }
+    .screen-data-note { margin-top: 10px !important; color: #7b8b9b !important; font-size: 9px !important; }
+    @media (max-width: 800px) { .screens-browser { grid-template-columns: 1fr; } .screen-side { display: grid; grid-template-columns: 1fr; } .screen-tabs { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+    @media (max-width: 700px) { .product-screens { padding: 58px 0; } .screen-shot { padding: 7px; } .screen-tabs { gap: 6px; } .screen-tab { min-height: 39px; padding: 7px 8px; font-size: 9px; } .screen-tab small { font-size: 7px; } .screen-info { padding: 11px; } .screen-info h3 { font-size: 14px; } }
+
   </style>
 </head>
 <body>
@@ -235,6 +258,7 @@
         <a href="#how">كيف تعمل</a>
         <a href="#display">العرض التنفيذي</a>
         <a href="#departments">مجالات الأداء</a>
+        <a href="#screens">لوحات المجالات</a>
       </nav>
       <div class="nav-actions">
         <a class="btn btn-secondary" href="https://kpi-central.com/login">دخول العملاء</a>
@@ -379,6 +403,39 @@
       </div>
     </section>
 
+
+    <section class="product-screens" id="screens">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">لقطات فعلية من المنصة</span>
+          <h2>شاهد لوحات المجالات كما تظهر داخل KPI Central.</h2>
+          <p>اختر مجالاً لاستعراض لوحة المؤشرات. الصور من النموذج التجريبي، والبيانات المعروضة فيها أمثلة توضيحية.</p>
+        </div>
+        <div class="screens-browser">
+          <figure class="screen-shot">
+            <img id="productScreenImage" src="assets/interfaces/hr.png" alt="لوحة مؤشرات الموارد البشرية في KPI Central" loading="lazy">
+            <figcaption><span id="productScreenCaption">KPI CENTRAL / HR · PEOPLE</span><span>لقطة من النموذج التجريبي</span></figcaption>
+          </figure>
+          <div class="screen-side">
+            <div class="screen-tabs" role="tablist" aria-label="اختيار لوحة المجال">
+              <button class="screen-tab" type="button" role="tab" aria-selected="true" data-key="hr" data-title="الموارد البشرية" data-code="HR / PEOPLE" data-description="أعداد الموظفين وحركة التعيينات والمغادرين ومؤشرات القوى العاملة." data-src="assets/interfaces/hr.png"><span>الموارد البشرية</span><small>HR / PEOPLE</small></button>
+          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-key="procurement" data-title="المشتريات" data-code="PROCUREMENT / SUPPLY" data-description="قيمة المشتريات والوفورات ومتابعة الطلبات وأوامر الشراء." data-src="assets/interfaces/procurement.png"><span>المشتريات</span><small>PROCUREMENT / SUPPLY</small></button>
+          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-key="finance" data-title="الشؤون المالية" data-code="FINANCE / VALUE" data-description="الإيرادات والمصروفات والتحصيل والأرصدة والمؤشرات المالية." data-src="assets/interfaces/finance.png"><span>الشؤون المالية</span><small>FINANCE / VALUE</small></button>
+          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-key="it" data-title="تقنية المعلومات" data-code="IT / SERVICE" data-description="التذاكر ومستوى الخدمة والمشاريع التقنية ونجاح النسخ الاحتياطي." data-src="assets/interfaces/it.png"><span>تقنية المعلومات</span><small>IT / SERVICE</small></button>
+          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-key="projects" data-title="إدارة المشاريع" data-code="PROJECTS / DELIVERY" data-description="حالة المشاريع والتقدم والموازنات والمصروفات." data-src="assets/interfaces/projects.png"><span>إدارة المشاريع</span><small>PROJECTS / DELIVERY</small></button>
+          <button class="screen-tab" type="button" role="tab" aria-selected="false" data-key="sales" data-title="المبيعات وتطوير الأعمال" data-code="SALES / GROWTH" data-description="المبيعات والفرص التجارية ومعدل التحويل وأداء الفريق." data-src="assets/interfaces/sales.png"><span>المبيعات وتطوير الأعمال</span><small>SALES / GROWTH</small></button>
+            </div>
+            <div class="screen-info">
+              <span class="eyebrow" id="productScreenCode">HR / PEOPLE</span>
+              <h3 id="productScreenTitle">الموارد البشرية</h3>
+              <p id="productScreenDescription">أعداد الموظفين وحركة التعيينات والمغادرين ومؤشرات القوى العاملة.</p>
+              <p class="screen-data-note">البيانات الظاهرة في الصور أمثلة تجريبية.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact">
       <div class="container contact-card">
         <div>
@@ -415,5 +472,19 @@
       toggle.setAttribute("aria-expanded", "false");
     }));
   </script>
+
+  <script>
+    document.querySelectorAll(".screen-tab").forEach(tab => tab.addEventListener("click", () => {
+      document.querySelectorAll(".screen-tab").forEach(item => item.setAttribute("aria-selected", String(item === tab)));
+      const image = document.getElementById("productScreenImage");
+      image.src = tab.dataset.src;
+      image.alt = "لوحة مؤشرات " + tab.dataset.title + " في KPI Central";
+      document.getElementById("productScreenCaption").textContent = "KPI CENTRAL / " + tab.dataset.code;
+      document.getElementById("productScreenCode").textContent = tab.dataset.code;
+      document.getElementById("productScreenTitle").textContent = tab.dataset.title;
+      document.getElementById("productScreenDescription").textContent = tab.dataset.description;
+    }));
+  </script>
+
 </body>
 </html>
