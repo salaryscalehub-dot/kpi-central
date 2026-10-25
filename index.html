@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8fa">
+  <meta name="description" content="KPI Central منصة لمتابعة مؤشرات أداء الإدارات وعرضها بوضوح أمام الإدارة العليا.">
+  <title>KPI Central | الأداء واضح للجميع</title>
+  <style>
+    :root {
+      --ink: #182b42;
+      --muted: #607184;
+      --blue: #4f6b92;
+      --blue-dark: #243b59;
+      --teal: #4c9c91;
+      --mint: #e4f1ed;
+      --surface: #ffffff;
+      --canvas: #f6f8fa;
+      --line: #e2e8ee;
+      --gold: #d3a15b;
+      --shadow: 0 18px 48px rgba(30, 52, 77, .09);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: "Avenir Next", "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .container { width: min(1160px, calc(100% - 44px)); margin-inline: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(246,248,250,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226,232,238,.8);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 750; letter-spacing: -.03em; color: var(--blue-dark); }
+    .brand-mark {
+      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px;
+      color: white; background: var(--blue-dark); box-shadow: 0 7px 16px rgba(36,59,89,.16);
+    }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .brand span:last-child { font-size: 16px; direction: ltr; }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: #53657a; font-size: 13px; }
+    .nav-links a:hover { color: var(--blue-dark); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      min-height: 43px; padding: 0 18px; border-radius: 10px; border: 1px solid transparent;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 13px; font-weight: 700; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { color: white; background: var(--blue-dark); box-shadow: 0 8px 18px rgba(36,59,89,.13); }
+    .btn-primary:hover { background: #304d70; transform: translateY(-1px); }
+    .btn-secondary { color: var(--blue-dark); background: white; border-color: var(--line); }
+    .btn-secondary:hover { border-color: #b8c6d3; background: #fbfcfd; }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 9px; width: 42px; height: 42px; color: var(--ink); }
+    .hero { position: relative; overflow: hidden; padding: 72px 0 66px; }
+    .hero::before {
+      content: ""; position: absolute; width: 510px; height: 510px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(76,156,145,.13), rgba(76,156,145,0) 68%);
+      left: -170px; top: -100px; pointer-events: none;
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--teal); font-size: 12px; font-weight: 750; letter-spacing: .01em; }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+    h1 { margin: 16px 0 18px; max-width: 510px; font-size: clamp(34px, 4.2vw, 52px); line-height: 1.25; letter-spacing: -.045em; color: var(--blue-dark); }
+    .hero-copy { max-width: 480px; color: var(--muted); font-size: 16px; line-height: 1.9; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .hero-note { display: flex; gap: 9px; align-items: center; color: #758597; font-size: 11px; margin-top: 20px; }
+    .hero-note i { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+    .dashboard-wrap { position: relative; padding: 20px 0 20px 20px; }
+    .dashboard-wrap::before {
+      content: ""; position: absolute; inset: 0 28px 0 0; border-radius: 34px;
+      background: linear-gradient(145deg, #e9f1f1, #edf0f5); transform: rotate(-2.4deg);
+    }
+    .dashboard {
+      position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.9); border-radius: 17px;
+      background: #fff; box-shadow: var(--shadow); padding: 19px; transform: rotate(1.1deg);
+    }
+    .dash-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid #edf1f4; }
+    .dash-company { display: flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 750; color: #33485f; }
+    .dash-symbol { display: grid; place-items: center; width: 28px; height: 28px; color: white; background: var(--blue); border-radius: 8px; font-size: 12px; }
+    .dash-period { color: #7b8b9b; background: #f5f7f9; padding: 5px 9px; border-radius: 7px; font-size: 10px; }
+    .dash-heading { display: flex; justify-content: space-between; align-items: end; margin: 16px 0 12px; }
+    .dash-heading strong { display: block; font-size: 13px; color: var(--ink); }
+    .dash-heading span { color: #8291a0; font-size: 9px; }
+    .status { color: #438a7f !important; background: #eaf5f1; border-radius: 20px; padding: 3px 8px; font-size: 9px !important; }
+    .metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .metric { border: 1px solid #e9eef2; border-radius: 11px; padding: 12px; min-height: 93px; }
+    .metric-label { color: #8291a0; font-size: 9px; }
+    .metric-value { color: var(--blue-dark); font-size: 24px; line-height: 1.2; font-weight: 760; margin-top: 4px; direction: ltr; text-align: right; }
+    .metric-foot { color: #438a7f; font-size: 8px; margin-top: 4px; }
+    .dash-lower { display: grid; grid-template-columns: 1.1fr .9fr; gap: 10px; margin-top: 10px; }
+    .chart-card, .dept-card { border: 1px solid #e9eef2; border-radius: 11px; padding: 12px; min-height: 141px; }
+    .mini-title { font-size: 10px; font-weight: 750; color: #34495f; }
+    .mini-sub { font-size: 8px; color: #96a2af; }
+    .bars { height: 76px; display: flex; align-items: end; gap: 8px; padding: 12px 5px 0; border-bottom: 1px solid #e9eef2; }
+    .bar { flex: 1; min-width: 8px; border-radius: 4px 4px 0 0; background: #a9c6d2; }
+    .bar:nth-child(3n) { background: var(--teal); }
+    .bar:nth-child(2n) { background: #c6d8dd; }
+    .bar-labels { display: flex; justify-content: space-between; color: #9aa6b1; font-size: 7px; padding-top: 4px; }
+    .dept-list { display: grid; gap: 10px; margin-top: 13px; }
+    .dept-row { display: flex; align-items: center; justify-content: space-between; gap: 7px; color: #596c7e; font-size: 9px; }
+    .dept-row b { color: var(--ink); font-size: 9px; direction: ltr; }
+    .progress { height: 5px; background: #eef2f4; border-radius: 99px; margin-top: 4px; overflow: hidden; }
+    .progress i { display: block; height: 100%; background: var(--teal); border-radius: inherit; }
+    .sample-tag { position: absolute; bottom: 4px; left: 2px; display: inline-flex; gap: 6px; align-items: center; color: #758597; background: white; border: 1px solid var(--line); border-radius: 99px; padding: 7px 11px; font-size: 9px; box-shadow: 0 7px 20px rgba(30,52,77,.07); }
+    .sample-tag i { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .proof { border-block: 1px solid var(--line); background: rgba(255,255,255,.58); }
+    .proof-inner { min-height: 80px; display: flex; justify-content: space-between; align-items: center; gap: 18px; color: #5d6e7f; font-size: 12px; }
+    .proof-label { color: #9aa6b1; font-size: 11px; }
+    .proof-item { display: inline-flex; align-items: center; gap: 8px; }
+    .proof-item svg { width: 16px; height: 16px; color: var(--teal); }
+    section { scroll-margin-top: 88px; }
+    .section { padding: 84px 0; }
+    .section-head { max-width: 650px; margin: 0 auto 42px; text-align: center; }
+    .section-head h2 { margin: 10px 0 12px; font-size: clamp(25px, 3vw, 34px); line-height: 1.35; letter-spacing: -.035em; color: var(--blue-dark); }
+    .section-head p { color: var(--muted); font-size: 14px; margin: 0; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .step { position: relative; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 15px; }
+    .step-num { width: 35px; height: 35px; border-radius: 10px; display: grid; place-items: center; background: var(--mint); color: #367f75; font-size: 12px; font-weight: 800; }
+    .step h3 { margin: 17px 0 7px; font-size: 15px; color: var(--blue-dark); }
+    .step p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .step-arrow { position: absolute; top: 30px; left: 25px; color: #b7c3cc; font-size: 18px; }
+    .screen-section { padding: 15px 0 84px; }
+    .screen-panel { display: grid; grid-template-columns: .72fr 1.28fr; gap: 42px; align-items: center; border-radius: 24px; padding: 42px; background: var(--blue-dark); color: white; overflow: hidden; position: relative; }
+    .screen-panel::after { content:""; position:absolute; width:350px;height:350px;border-radius:50%;left:-130px;bottom:-200px;background:rgba(76,156,145,.16); }
+    .screen-copy { position: relative; z-index: 1; }
+    .screen-copy .eyebrow { color: #9bd1c7; }
+    .screen-copy h2 { margin: 12px 0; font-size: 29px; line-height: 1.4; letter-spacing: -.03em; }
+    .screen-copy p { color: #d0dae4; font-size: 13px; line-height: 1.9; }
+    .screen-copy .btn { margin-top: 12px; background: white; color: var(--blue-dark); }
+    .tv-frame { position: relative; z-index: 1; background: #101c2a; border: 7px solid #101c2a; border-radius: 13px; box-shadow: 0 22px 45px rgba(0,0,0,.23); transform: perspective(900px) rotateY(4deg); }
+    .tv-inner { background: #f7f9fa; color: var(--ink); padding: 15px; border-radius: 5px; }
+    .tv-top { display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:9px;color:#728295; }
+    .tv-top strong { color: var(--blue-dark); font-size:11px; }
+    .tv-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:8px; }
+    .tv-kpi { background:white;border:1px solid #e7edf1;border-radius:7px;padding:10px;min-height:72px; }
+    .tv-kpi span { display:block;color:#8997a4;font-size:8px; }
+    .tv-kpi b { display:block;color:var(--blue-dark);font-size:18px;line-height:1.4;direction:ltr;text-align:right; }
+    .tv-kpi em { color:#4c9c91;font-size:7px;font-style:normal; }
+    .tv-bottom { display:grid;grid-template-columns:1.2fr .8fr;gap:8px;margin-top:8px; }
+    .tv-chart { min-height:95px;background:white;border:1px solid #e7edf1;border-radius:7px;padding:10px; }
+    .tv-chart .bars { height:55px; }
+    .tv-list { background:white;border:1px solid #e7edf1;border-radius:7px;padding:10px; }
+    .tv-list .dept-row { font-size:8px; margin-top:7px; }
+    .departments { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .department { min-height: 92px; display: flex; align-items: center; gap: 12px; background: white; border: 1px solid var(--line); border-radius: 13px; padding: 16px; }
+    .dept-icon { width: 34px; height: 34px; display:grid;place-items:center;border-radius:10px;background:#edf3f6;color:var(--blue);font-weight:800;font-size:12px; }
+    .department strong { display:block;font-size:12px;color:var(--blue-dark); }
+    .department span { display:block;color:#8997a4;font-size:10px;margin-top:2px; }
+    .contact { padding: 18px 0 82px; }
+    .contact-card { display:flex; justify-content:space-between; align-items:center; gap:28px; padding:32px 38px; border:1px solid #dfe8e8; border-radius:18px; background:linear-gradient(110deg,#edf5f3,#f9fbfc); }
+    .contact-card h2 { margin:0 0 6px; color:var(--blue-dark); font-size:22px; }
+    .contact-card p { margin:0; color:var(--muted); font-size:12px; }
+    .contact-actions { display:flex; gap:10px; flex-shrink:0; }
+    footer { border-top:1px solid var(--line); padding:22px 0; }
+    .footer-inner { display:flex;justify-content:space-between;align-items:center;gap:20px;color:#8794a1;font-size:10px; }
+    .footer-links { display:flex;gap:18px; }
+    .toast { position:fixed; inset:auto 50% 22px auto; transform:translateX(50%) translateY(20px); opacity:0; pointer-events:none; z-index:30; background:var(--blue-dark);color:white;padding:11px 17px;border-radius:10px;font-size:12px;box-shadow:var(--shadow);transition:.25s; }
+    .toast.show { opacity:1;transform:translateX(50%) translateY(0); }
+    @media (max-width: 900px) {
+      .hero-grid { gap: 34px; }
+      .departments { grid-template-columns: repeat(2,1fr); }
+      .screen-panel { gap: 24px; padding: 30px; }
+      .nav-links { gap: 16px; }
+    }
+    @media (max-width: 700px) {
+      body { font-size:14px; }
+      .container { width:min(100% - 30px, 520px); }
+      .nav { min-height:66px; }
+      .menu-toggle { display:block; }
+      .nav-links { display:none; position:absolute; top:65px; inset-inline:15px; padding:14px; border:1px solid var(--line); border-radius:12px; background:white; box-shadow:var(--shadow); flex-direction:column; align-items:stretch; gap:0; }
+      .nav-links.open { display:flex; }
+      .nav-links a { padding:9px 7px; }
+      .nav-actions .btn-secondary { display:none; }
+      .nav-actions .btn { min-height:39px; padding-inline:12px; font-size:11px; }
+      .hero { padding:48px 0 40px; }
+      .hero-grid { grid-template-columns:1fr; gap:26px; }
+      h1 { font-size:34px; }
+      .hero-copy { font-size:14px; }
+      .dashboard-wrap { padding:10px 0 13px; margin-inline:2px; }
+      .dashboard { padding:13px; transform:rotate(.4deg); }
+      .metrics { gap:6px; }
+      .metric { min-height:78px; padding:9px; }
+      .metric-value { font-size:20px; }
+      .dash-lower { gap:6px; }
+      .chart-card,.dept-card { padding:9px; }
+      .proof-inner { min-height:auto; padding:17px 0; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+      .proof-label { grid-column:1/-1; }
+      .section { padding:60px 0; }
+      .section-head { margin-bottom:28px; }
+      .steps { grid-template-columns:1fr; gap:10px; }
+      .step { padding:19px; }
+      .step-arrow { display:none; }
+      .screen-section { padding:0 0 60px; }
+      .screen-panel { grid-template-columns:1fr; padding:24px 18px; gap:24px; }
+      .screen-copy h2 { font-size:24px; }
+      .tv-frame { transform:none; }
+      .tv-inner { padding:9px; }
+      .tv-grid { grid-template-columns:repeat(2,1fr); }
+      .tv-kpi { min-height:61px; padding:7px; }
+      .tv-kpi b { font-size:16px; }
+      .departments { gap:8px; }
+      .department { padding:11px; min-height:77px; gap:8px; }
+      .dept-icon { width:29px;height:29px; }
+      .contact { padding-bottom:58px; }
+      .contact-card { display:block; padding:24px 19px; }
+      .contact-actions { margin-top:17px; flex-wrap:wrap; }
+      .footer-inner { align-items:flex-start; flex-direction:column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="KPI Central - الصفحة الرئيسية">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 18V9m5 9V5m5 13v-6m5 6V3" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M2.5 21h19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span>KPI CENTRAL</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="التنقل الرئيسي">
+        <a href="#how">كيف تعمل</a>
+        <a href="#display">العرض التنفيذي</a>
+        <a href="#departments">مجالات الأداء</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="https://kpi-central.com/login">دخول العملاء</a>
+        <a class="btn btn-primary" href="#contact">اطلب عرضاً توضيحياً</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">رؤية أوضح لأداء شركتك</span>
+          <h1>اجعل أداء إداراتك واضحاً في مكان واحد.</h1>
+          <p class="hero-copy">KPI Central تساعد شركتك على متابعة مؤشرات الإدارات، وتنظيم تحديثها دورياً، وعرض صورة الأداء أمام المسؤولين بوضوح.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#how">اكتشف طريقة العمل <span aria-hidden="true">←</span></a>
+            <a class="btn btn-secondary" href="https://kpi-central.com/portal?mode=preview">معاينة الواجهات</a>
+          </div>
+          <div class="hero-note"><i></i><span>من تحديث البيانات إلى شاشة الأداء التنفيذي.</span></div>
+        </div>
+
+        <div class="dashboard-wrap" aria-label="تصور توضيحي للوحة مؤشرات الأداء">
+          <div class="dashboard">
+            <div class="dash-top">
+              <div class="dash-company"><span class="dash-symbol">K</span><span>لوحة الأداء التنفيذي</span></div>
+              <span class="dash-period">التقرير الشهري&nbsp; · &nbsp;أكتوبر</span>
+            </div>
+            <div class="dash-heading">
+              <div><strong>ملخص أداء الشركة</strong><span>نظرة عامة على مؤشرات الإدارات</span></div>
+              <span class="status">● محدثة</span>
+            </div>
+            <div class="metrics">
+              <div class="metric"><div class="metric-label">الأداء العام</div><div class="metric-value">86%</div><div class="metric-foot">↑ +4% عن الفترة السابقة</div></div>
+              <div class="metric"><div class="metric-label">مؤشرات على المسار</div><div class="metric-value">24</div><div class="metric-foot">من أصل 31 مؤشراً</div></div>
+              <div class="metric"><div class="metric-label">الإدارات المكتملة</div><div class="metric-value">7/8</div><div class="metric-foot">تم تحديث البيانات</div></div>
+            </div>
+            <div class="dash-lower">
+              <div class="chart-card">
+                <div class="mini-title">اتجاه الأداء</div><div class="mini-sub">مقارنة شهرية توضيحية</div>
+                <div class="bars" aria-hidden="true">
+                  <i class="bar" style="height:43%"></i><i class="bar" style="height:59%"></i><i class="bar" style="height:51%"></i><i class="bar" style="height:70%"></i><i class="bar" style="height:63%"></i><i class="bar" style="height:84%"></i><i class="bar" style="height:76%"></i><i class="bar" style="height:92%"></i>
+                </div>
+                <div class="bar-labels"><span>مارس</span><span>مايو</span><span>يوليو</span><span>أكتوبر</span></div>
+              </div>
+              <div class="dept-card">
+                <div class="mini-title">حالة الإدارات</div>
+                <div class="dept-list">
+                  <div><div class="dept-row"><span>تقنية المعلومات</span><b>92%</b></div><div class="progress"><i style="width:92%"></i></div></div>
+                  <div><div class="dept-row"><span>المبيعات</span><b>78%</b></div><div class="progress"><i style="width:78%"></i></div></div>
+                  <div><div class="dept-row"><span>العمليات</span><b>65%</b></div><div class="progress"><i style="width:65%"></i></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="sample-tag"><i></i>تصور بصري توضيحي</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="proof">
+      <div class="container proof-inner">
+        <span class="proof-label">متابعة الأداء من خلال:</span>
+        <span class="proof-item"><svg viewBox="0 0 20 20" fill="none"><path d="M3 16V5m5 11V8m5 8V3m4 13v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>مؤشرات الإدارات</span>
+        <span class="proof-item"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>تحديثات دورية</span>
+        <span class="proof-item"><svg viewBox="0 0 20 20" fill="none"><path d="M3 15h14V5H3v10Zm3 3h8M10 15v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>عرض تنفيذي</span>
+      </div>
+    </div>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">دورة أداء منظمة</span>
+          <h2>كل إدارة تعرف ما عليها، والإدارة العليا ترى الصورة كاملة.</h2>
+          <p>تنتقل المؤشرات من تحديثات الإدارات إلى لوحة متابعة واضحة، ضمن دورة دورية سهلة الفهم.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-num">01</span><span class="step-arrow" aria-hidden="true">←</span>
+            <h3>تُحدّث الإدارات بياناتها</h3>
+            <p>يدخل مدير كل إدارة نتائج مؤشرات الأداء وفق الفترة المحددة، مع توضيح حالة التقدم وأبرز الملاحظات.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">02</span><span class="step-arrow" aria-hidden="true">←</span>
+            <h3>تظهر الصورة المجمعة</h3>
+            <p>تُعرض المؤشرات في لوحة موحدة تسهّل متابعة الأداء وملاحظة ما يحتاج إلى اهتمام.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">03</span>
+            <h3>تتابع القيادة الأداء</h3>
+            <p>يراجع المسؤول الأعلى النتائج، ويتابع الإدارات، ويعرض المؤشرات التنفيذية على الشاشة.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen-section" id="display">
+      <div class="container">
+        <div class="screen-panel">
+          <div class="screen-copy">
+            <span class="eyebrow">الأداء أمام الجميع</span>
+            <h2>لوحة تنفيذية تُقرأ من أول نظرة.</h2>
+            <p>اعرض مؤشرات مختارة على شاشة التلفزيون، وتابع صورة الأداء العام والإدارات ومجالات العمل في مشهد واحد.</p>
+            <a class="btn" href="https://kpi-central.com/portal?mode=preview">شاهد معاينة الواجهات <span aria-hidden="true">←</span></a>
+          </div>
+          <div class="tv-frame" aria-label="تصور توضيحي لشاشة مؤشرات">
+            <div class="tv-inner">
+              <div class="tv-top"><strong>KPI CENTRAL&nbsp; / &nbsp;ملخص الأداء</strong><span>أكتوبر&nbsp; 2026</span></div>
+              <div class="tv-grid">
+                <div class="tv-kpi"><span>الأداء العام</span><b>86%</b><em>ضمن النطاق المستهدف</em></div>
+                <div class="tv-kpi"><span>الأهداف المحققة</span><b>24 / 31</b><em>من المؤشرات النشطة</em></div>
+                <div class="tv-kpi"><span>تحديث البيانات</span><b>88%</b><em>7 إدارات من 8</em></div>
+                <div class="tv-kpi"><span>مؤشرات تحتاج متابعة</span><b>04</b><em>حسب الحالة المسجلة</em></div>
+              </div>
+              <div class="tv-bottom">
+                <div class="tv-chart"><div class="mini-title">الأداء حسب الإدارة</div><div class="bars" aria-hidden="true"><i class="bar" style="height:82%"></i><i class="bar" style="height:66%"></i><i class="bar" style="height:91%"></i><i class="bar" style="height:56%"></i><i class="bar" style="height:75%"></i><i class="bar" style="height:68%"></i><i class="bar" style="height:87%"></i></div></div>
+                <div class="tv-list"><div class="mini-title">الإدارات</div><div class="dept-row"><span>تقنية المعلومات</span><b>92%</b></div><div class="dept-row"><span>المالية</span><b>84%</b></div><div class="dept-row"><span>المبيعات</span><b>78%</b></div><div class="dept-row"><span>العمليات</span><b>65%</b></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="departments">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">مؤشرات على مستوى الشركة</span>
+          <h2>مجالات أداء متعددة، ضمن لوحة واحدة.</h2>
+          <p>تُختار المؤشرات بحسب الإدارات ونطاق العمل المعتمد لكل شركة.</p>
+        </div>
+        <div class="departments">
+          <div class="department"><span class="dept-icon">01</span><div><strong>الاستراتيجية</strong><span>الأهداف والمبادرات</span></div></div>
+          <div class="department"><span class="dept-icon">02</span><div><strong>المالية</strong><span>الأداء والموازنة</span></div></div>
+          <div class="department"><span class="dept-icon">03</span><div><strong>المبيعات</strong><span>النمو والعملاء</span></div></div>
+          <div class="department"><span class="dept-icon">04</span><div><strong>تقنية المعلومات</strong><span>الخدمات والأنظمة</span></div></div>
+          <div class="department"><span class="dept-icon">05</span><div><strong>المشاريع</strong><span>التقدم والتسليم</span></div></div>
+          <div class="department"><span class="dept-icon">06</span><div><strong>العمليات</strong><span>الكفاءة وجودة التنفيذ</span></div></div>
+          <div class="department"><span class="dept-icon">07</span><div><strong>الموارد البشرية</strong><span>القوى العاملة والخدمات</span></div></div>
+          <div class="department"><span class="dept-icon">08</span><div><strong>المخاطر والالتزام</strong><span>الملاحظات والإجراءات</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-card">
+        <div>
+          <h2>ابدأ برؤية أوضح لأداء شركتك.</h2>
+          <p>تعرّف على المنصة، واستكشف الواجهات، ثم حدّد ما يناسب احتياج شركتك.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="https://kpi-central.com/portal?mode=preview">استكشف المعاينة</a>
+          <a class="btn btn-secondary" href="https://kpi-central.com/login">دخول العملاء</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">K</span><span>KPI CENTRAL</span></a>
+      <span>© KPI Central. جميع الحقوق محفوظة.</span>
+      <div class="footer-links"><a href="#how">كيف تعمل</a><a href="#departments">مجالات الأداء</a><a href="https://kpi-central.com/login">دخول العملاء</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById("menuToggle");
+    const links = document.getElementById("navLinks");
+    toggle.addEventListener("click", () => {
+      const isOpen = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "إغلاق القائمة" : "فتح القائمة");
+    });
+    links.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }));
+  </script>
+</body>
+</html>
