@@ -192,14 +192,17 @@
       .area-viewer-note{height:24px;min-height:0;margin:0;overflow:hidden}
     }
 
-  .billing-choice{display:flex;align-items:center;gap:4px;width:max-content;max-width:100%;margin:0 auto 10px;padding:4px;border:1px solid #ded7cb;border-radius:999px;background:#fffdfa}.billing-choice-btn{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:7px 14px;border:0;border-radius:999px;background:transparent;color:#627184;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.billing-choice-btn.is-selected{background:var(--navy);color:#fff}.billing-save{color:inherit;font-size:9px;font-weight:700;opacity:.8}.billing-note{min-height:18px;margin:0 auto 14px;text-align:center;color:#74808b;font-size:10px;line-height:1.6}</style>
+  .billing-choice{display:flex;align-items:center;gap:4px;width:max-content;max-width:100%;margin:0 auto 10px;padding:4px;border:1px solid #ded7cb;border-radius:999px;background:#fffdfa}.billing-choice-btn{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:7px 14px;border:0;border-radius:999px;background:transparent;color:#627184;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.billing-choice-btn.is-selected{background:var(--navy);color:#fff}.billing-save{color:inherit;font-size:9px;font-weight:700;opacity:.8}.billing-note{min-height:18px;margin:0 auto 14px;text-align:center;color:#74808b;font-size:10px;line-height:1.6}
+    .nav a,.btn{text-decoration:none;font-family:inherit}
+    .package-subscribe{display:inline-flex;align-items:center;justify-content:center;min-width:118px;padding:8px 13px;border:0;border-radius:8px;background:linear-gradient(135deg,#dfba72,#c4913c);color:#102f55;font-family:inherit;font-size:11px;font-weight:900;cursor:pointer}
+    .package-subscribe:hover{filter:brightness(1.04)}</style>
 </head>
 <body>
   <header class="hero" id="top">
     <div class="container hero-header">
       <div class="brand"><span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 17.5 9 12l3.3 3.2L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7 7H20v4.3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">KPI <span>Central</span></div><small>منصة متابعة الأداء المؤسسي</small></div><span class="brand-topology" aria-hidden="true"><svg viewBox="0 0 120 74" fill="none"><path class="topology-line" d="M60 37 20 13M60 37 60 8M60 37 101 14M60 37 20 61M60 37 60 66M60 37 101 60"/><rect class="topology-node" x="12" y="7" width="17" height="12" rx="1"/><rect class="topology-node" x="52" y="2" width="17" height="12" rx="1"/><rect class="topology-node" x="92" y="8" width="17" height="12" rx="1"/><rect class="topology-node" x="12" y="55" width="17" height="12" rx="1"/><rect class="topology-node" x="52" y="60" width="17" height="12" rx="1"/><rect class="topology-node" x="92" y="54" width="17" height="12" rx="1"/><circle class="topology-core" cx="60" cy="37" r="7"/><circle class="topology-pulse" cx="60" cy="37" r="12"/></svg></span></div>
       <nav class="nav" aria-label="التنقل"><a href="#top">الرئيسية</a><a href="#about">ما هي الأداة؟</a><a href="#how">آلية العمل</a><a href="#pricing">الأسعار</a></nav>
-      <div class="header-actions"><a class="btn btn-outline" href="https://kpi-central.com/login">دخول العملاء</a><a class="btn btn-gold" href="#contact">اطلب الخدمة</a></div>
+      <div class="header-actions"><a class="btn btn-outline" href="https://kpi-central.com/login">دخول العملاء</a><a class="btn btn-gold" href="#contact">تواصل معنا</a></div>
     </div>
     <div class="container hero-main">
       <div class="hero-copy">
@@ -371,6 +374,7 @@
               <tr><td>تعديل المؤشرات الموجودة</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
               <tr><td>إضافة مجالات جديدة</td><td>غير متاح</td><td>حتى مجالين</td><td>مفتوح</td></tr>
               <tr><td>شاشة العرض والملحقات</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
+              <tr class="subscribe-row"><td></td><td><button class="package-subscribe" type="button">اشترك الآن</button></td><td><button class="package-subscribe" type="button">اشترك الآن</button></td><td><button class="package-subscribe" type="button">اشترك الآن</button></td></tr>
             </tbody>
           </table></div>
           
