@@ -192,7 +192,7 @@
       .area-viewer-note{height:24px;min-height:0;margin:0;overflow:hidden}
     }
 
-  </style>
+  .billing-choice{display:flex;align-items:center;gap:4px;width:max-content;max-width:100%;margin:0 auto 10px;padding:4px;border:1px solid #ded7cb;border-radius:999px;background:#fffdfa}.billing-choice-btn{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:7px 14px;border:0;border-radius:999px;background:transparent;color:#627184;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.billing-choice-btn.is-selected{background:var(--navy);color:#fff}.billing-save{color:inherit;font-size:9px;font-weight:700;opacity:.8}.billing-note{min-height:18px;margin:0 auto 14px;text-align:center;color:#74808b;font-size:10px;line-height:1.6}</style>
 </head>
 <body>
   <header class="hero" id="top">
@@ -359,15 +359,16 @@
       </div>
       <div class="price-layout">
         <div>
-          <div class="table-scroll"><table class="price-table" aria-label="جدول مقارنة أسعار وباقات KPI Central">
-            <thead><tr><th scope="col">المزايا</th><th scope="col"><span class="table-plan">الأساسية</span><span class="table-price">1,500 <small>ريال / شهرياً</small></span><small>شامل الضريبة</small></th><th scope="col" class="featured-head"><span class="table-plan">الاحترافية</span><span class="table-price">2,000 <small>ريال / شهرياً</small></span><small>شامل الضريبة</small></th><th scope="col"><span class="table-plan">الأعمال المتخصصة</span><span class="table-price">2,400 <small>ريال / شهرياً</small></span><small>شامل الضريبة</small></th></tr></thead>
+          <div class="billing-choice" role="group" aria-label="اختر دورية الدفع"><button class="billing-choice-btn is-selected" type="button" data-billing-mode="monthly" aria-pressed="true">شهري</button><button class="billing-choice-btn" type="button" data-billing-mode="annual" aria-pressed="false">سنوي <span class="billing-save">وفّر شهراً كاملاً</span></button></div><p class="billing-note" id="billing-note" aria-live="polite">الأسعار الشهرية بالريال السعودي، والسنوية توفر قيمة شهر كامل.</p><div class="table-scroll"><table class="price-table" aria-label="جدول مقارنة أسعار وباقات KPI Central">
+            <thead><tr><th scope="col">المزايا</th><th scope="col"><span class="table-plan">الأساسية</span><span class="table-price" data-monthly="500" data-annual="5500"><span data-price-amount>500</span> <small data-price-period>ريال / شهرياً</small></span><small>شامل الضريبة</small></th><th scope="col" class="featured-head"><span class="table-plan">الاحترافية</span><span class="table-price" data-monthly="600" data-annual="6600"><span data-price-amount>600</span> <small data-price-period>ريال / شهرياً</small></span><small>شامل الضريبة</small></th><th scope="col"><span class="table-plan">الأعمال المتخصصة</span><span class="table-price" data-monthly="800" data-annual="8800"><span data-price-amount>800</span> <small data-price-period>ريال / شهرياً</small></span><small>شامل الضريبة</small></th></tr></thead>
             <tbody>
               <tr><td>مؤشرات جاهزة لـ 12 مجالاً معتمداً</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
+              <tr><td>مدخلو البيانات</td><td>11 مستخدماً</td><td>13 مستخدماً</td><td>مفتوح</td></tr>
               <tr><td>لوحة متابعة تنفيذية موحدة</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
               <tr><td>تحديث دوري وتذكيرات للإدارات</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
               <tr><td>جلسة تأسيسية واحدة مع كل مدير مجال</td><td><span class="no" aria-label="غير مشمول">—</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
-              <tr><td>تخصيص مؤشرات المجالات ولوحة العرض</td><td><span class="no" aria-label="غير مشمول">—</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
-              <tr><td>مجال واحد مخصص لنشاط المنشأة الرئيسي</td><td><span class="no" aria-label="غير مشمول">—</span></td><td><span class="no" aria-label="غير مشمول">—</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
+              <tr><td>تعديل المؤشرات الموجودة</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
+              <tr><td>إضافة مجالات جديدة</td><td>غير متاح</td><td>حتى مجالين</td><td>مفتوح</td></tr>
               <tr><td>شاشة العرض والملحقات</td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td><td><span class="yes" aria-label="متاح">✓</span></td></tr>
             </tbody>
           </table></div>
@@ -452,5 +453,28 @@
     window.location.href = `mailto:info@kpi-central.com?subject=${subject}&body=${body}`;
   });
 </script>
-</body>
+<script>
+(() => {
+  const buttons = [...document.querySelectorAll('[data-billing-mode]')];
+  const prices = [...document.querySelectorAll('.table-price[data-monthly][data-annual]')];
+  const note = document.getElementById('billing-note');
+  function setBillingMode(mode) {
+    buttons.forEach(button => {
+      const selected = button.dataset.billingMode === mode;
+      button.classList.toggle('is-selected', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+    prices.forEach((price, index) => {
+      const amount = mode === 'annual' ? price.dataset.annual : price.dataset.monthly;
+      price.querySelector('[data-price-amount]').textContent = Number(amount).toLocaleString('en-US');
+      price.querySelector('[data-price-period]').textContent = mode === 'annual' ? 'ريال / سنوياً' : 'ريال / شهرياً';
+    });
+    note.textContent = mode === 'annual'
+      ? 'الاشتراك السنوي يشمل 11 شهراً فقط؛ وفّر 500 أو 600 أو 800 ريال حسب الباقة.'
+      : 'الأسعار الشهرية بالريال السعودي.';
+  }
+  buttons.forEach(button => button.addEventListener('click', () => setBillingMode(button.dataset.billingMode)));
+  setBillingMode('monthly');
+})();
+</script></body>
 </html>
