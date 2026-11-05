@@ -458,7 +458,6 @@
   const buttons = [...document.querySelectorAll('[data-billing-mode]')];
   const prices = [...document.querySelectorAll('.table-price[data-monthly][data-annual]')];
   const note = document.getElementById('billing-note');
-  const savings = ['500', '600', '800'];
   function setBillingMode(mode) {
     buttons.forEach(button => {
       const selected = button.dataset.billingMode === mode;
