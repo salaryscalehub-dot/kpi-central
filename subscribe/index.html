@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="طلب اشتراك في منصة كي بي آي سنترال">
-  <title>طلب الاشتراك | كي بي آي سنترال</title>
+  <title>طلب الاشتراك | KPI Central</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2563EB;
-      --primary-dark: #1D4ED8;
-      --page: #F8FAFC;
+      --primary: #C69A4A;
+      --primary-dark: #102F55;
+      --page: #F7F3EC;
       --card: #FFFFFF;
-      --border: #E5E7EB;
-      --text: #1F2937;
-      --muted: #6B7280;
+      --border: #E6DED2;
+      --text: #26384F;
+      --muted: #6B7480;
       --success: #16A34A;
       --danger: #DC2626;
       --warning: #F59E0B;
@@ -29,7 +29,7 @@
       min-width: 320px;
       background: var(--page);
       color: var(--text);
-      font-family: "Noto Sans Arabic", Calibri, sans-serif;
+      font-family: "Avenir Arabic Heavy", "Avenir Arabic", "Avenir Next Arabic", "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
       font-size: 14px;
       line-height: 1.8;
     }
@@ -56,7 +56,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: #12345A;
+      color: #102F55;
       text-decoration: none;
       font-weight: 800;
     }
@@ -67,7 +67,7 @@
       height: 38px;
       place-items: center;
       border-radius: 10px;
-      background: #12345A;
+      background: #102F55;
       color: #F2C66D;
       font-size: 21px;
       font-weight: 800;
@@ -106,7 +106,7 @@
 
     h1 {
       margin: 0;
-      color: #12345A;
+      color: #102F55;
       font-size: clamp(24px, 4vw, 34px);
       line-height: 1.35;
     }
@@ -133,7 +133,7 @@
 
     .card h2 {
       margin: 0 0 17px;
-      color: #12345A;
+      color: #102F55;
       font-size: 18px;
     }
 
@@ -171,7 +171,7 @@
 
     input:focus, select:focus, textarea:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+      box-shadow: 0 0 0 3px rgba(198, 154, 74, .16);
     }
 
     textarea {
@@ -194,12 +194,12 @@
       transition: border-color .15s ease, background .15s ease;
     }
 
-    .plan:hover { border-color: #93C5FD; }
+    .plan:hover { border-color: #D8AD5D; }
 
     .plan.selected {
       border-color: var(--primary);
-      background: #EFF6FF;
-      box-shadow: 0 0 0 2px rgba(37, 99, 235, .08);
+      background: #F8F3E9;
+      box-shadow: 0 0 0 2px rgba(198, 154, 74, .10);
     }
 
     .plan input {
@@ -214,7 +214,7 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      color: #12345A;
+      color: #102F55;
       font-size: 14px;
       font-weight: 800;
     }
@@ -238,9 +238,9 @@
       gap: 9px;
       margin-top: 18px;
       padding: 14px;
-      border: 1px solid #DBEAFE;
+      border: 1px solid #EEE3CB;
       border-radius: 10px;
-      background: #F8FBFF;
+      background: #FFFDF9;
     }
 
     .summary-row {
@@ -310,7 +310,7 @@
 
     .fallback-button {
       margin-top: 10px;
-      border: 1px solid #BFDBFE;
+      border: 1px solid #E6DED2;
       background: #fff;
       color: var(--primary-dark);
     }
@@ -345,7 +345,7 @@
       height: 28px;
       place-items: center;
       border-radius: 8px;
-      background: #EFF6FF;
+      background: #F8F3E9;
       color: var(--primary-dark);
       content: "✓";
       font-weight: 800;
@@ -385,7 +385,7 @@
       width: 32px;
       height: 32px;
       margin: 0 auto 13px;
-      border: 3px solid #DBEAFE;
+      border: 3px solid #EEE3CB;
       border-top-color: var(--primary);
       border-radius: 50%;
       animation: spin .8s linear infinite;
@@ -395,7 +395,7 @@
 
     .processing-card strong {
       display: block;
-      color: #12345A;
+      color: #102F55;
       font-size: 15px;
     }
 
@@ -471,7 +471,7 @@
             </div>
           </div>
 
-          <div class="notice">لا توجد كلمة مرور في هذا النموذج، ولا يتم حفظ أي كلمة مرور في جدول البيانات.</div>
+          <div class="notice">هذه الصفحة لتسجيل طلب الاشتراك فقط؛ لا تتطلب كلمة مرور ولا تنفذ أي عملية دفع إلكتروني.</div>
           <div class="status" id="status" role="status" aria-live="polite"></div>
           <button class="submit-button" id="submitButton" type="submit">إرسال طلب الاشتراك</button>
           <button class="fallback-button" id="fallbackButton" type="button" hidden>إرسال النموذج المباشر إلى جوجل</button>
