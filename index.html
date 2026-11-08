@@ -195,13 +195,28 @@
   .billing-choice{display:flex;align-items:center;gap:4px;width:max-content;max-width:100%;margin:0 auto 10px;padding:4px;border:1px solid #ded7cb;border-radius:999px;background:#fffdfa}.billing-choice-btn{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:7px 14px;border:0;border-radius:999px;background:transparent;color:#627184;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.billing-choice-btn.is-selected{background:var(--navy);color:#fff}.billing-save{color:inherit;font-size:9px;font-weight:700;opacity:.8}.billing-note{min-height:18px;margin:0 auto 14px;text-align:center;color:#74808b;font-size:10px;line-height:1.6}
     .nav a,.btn{text-decoration:none;font-family:inherit}
     .package-subscribe{display:inline-flex;align-items:center;justify-content:center;min-width:118px;padding:8px 13px;border:0;border-radius:8px;background:linear-gradient(135deg,#dfba72,#c4913c);color:#102f55;font-family:inherit;font-size:11px;font-weight:900;cursor:pointer}
-    .package-subscribe:hover{filter:brightness(1.04)}</style>
+    .package-subscribe:hover{filter:brightness(1.04)}
+    .faq-section{padding:70px 0;background:linear-gradient(180deg,#fffdf9 0%,#f7f3ec 100%)}
+    .faq-list{max-width:920px;margin:0 auto}
+    .faq-item{margin:0 0 9px;border:1px solid var(--border);border-radius:12px;background:rgba(255,253,249,.94);box-shadow:0 10px 24px -24px rgba(16,47,85,.35);overflow:hidden}
+    .faq-item summary{display:grid;grid-template-columns:38px 1fr 22px;align-items:center;gap:13px;min-height:62px;padding:12px 18px;list-style:none;cursor:pointer;color:var(--navy);font-size:13px;font-weight:850}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-number{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--border);border-radius:50%;color:#a67c35;font-size:10px;font-weight:900;direction:ltr}
+    .faq-question{line-height:1.7}
+    .faq-toggle{position:relative;width:20px;height:20px;border:1px solid #d8c59f;border-radius:50%}
+    .faq-toggle:before,.faq-toggle:after{content:"";position:absolute;left:5px;right:5px;top:9px;height:1.5px;background:#b78b42}
+    .faq-toggle:after{transform:rotate(90deg);transition:transform .18s ease}
+    .faq-item[open] .faq-toggle:after{transform:rotate(0)}
+    .faq-answer{padding:0 53px 17px 18px;color:var(--muted);font-size:12px;line-height:1.9}
+    .faq-answer p{margin:0}
+    @media(max-width:740px){.faq-section{padding:48px 0}.faq-item summary{grid-template-columns:30px 1fr 20px;gap:9px;min-height:56px;padding:10px 11px;font-size:11px}.faq-number{width:27px;height:27px;font-size:9px}.faq-answer{padding:0 48px 14px 12px;font-size:10.5px}}
+</style>
 </head>
 <body>
   <header class="hero" id="top">
     <div class="container hero-header">
       <div class="brand"><span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 17.5 9 12l3.3 3.2L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.7 7H20v4.3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="brand-name">KPI <span>Central</span></div><small>منصة متابعة الأداء المؤسسي</small></div><span class="brand-topology" aria-hidden="true"><svg viewBox="0 0 120 74" fill="none"><path class="topology-line" d="M60 37 20 13M60 37 60 8M60 37 101 14M60 37 20 61M60 37 60 66M60 37 101 60"/><rect class="topology-node" x="12" y="7" width="17" height="12" rx="1"/><rect class="topology-node" x="52" y="2" width="17" height="12" rx="1"/><rect class="topology-node" x="92" y="8" width="17" height="12" rx="1"/><rect class="topology-node" x="12" y="55" width="17" height="12" rx="1"/><rect class="topology-node" x="52" y="60" width="17" height="12" rx="1"/><rect class="topology-node" x="92" y="54" width="17" height="12" rx="1"/><circle class="topology-core" cx="60" cy="37" r="7"/><circle class="topology-pulse" cx="60" cy="37" r="12"/></svg></span></div>
-      <nav class="nav" aria-label="التنقل"><a href="#top">الرئيسية</a><a href="#about">ما هي الأداة؟</a><a href="#how">آلية العمل</a><a href="#pricing">الأسعار</a></nav>
+      <nav class="nav" aria-label="التنقل"><a href="#top">الرئيسية</a><a href="#about">ما هي الأداة؟</a><a href="#how">آلية العمل</a><a href="#pricing">الأسعار</a><a href="#faq">الأسئلة الشائعة</a></nav>
       <div class="header-actions"><a class="btn btn-outline client-login" href="https://kpi-central.com/login">دخول العملاء</a><a class="btn btn-outline" href="#contact">تواصل معنا</a><a class="btn btn-gold header-trial" href="https://kpi-central-subscriptions.vercel.app/signup">ابدأ التجربة</a></div>
     </div>
     <div class="container hero-main">
@@ -392,6 +407,22 @@
       <article class="step-card"><div class="step-top"><span class="step-number">٣</span><div><span class="step-label">الخطوة ٣ من ٤</span><h3>إدخال البيانات دورياً</h3></div></div><p>يدخل مدير كل إدارة بيانات مؤشرات إدارته، وتصل التذكيرات عند حلول موعد التحديث.</p></article>
       <article class="step-card"><div class="step-top"><span class="step-number">٤</span><div><span class="step-label">الخطوة ٤ من ٤</span><h3>مراجعة الأداء واتخاذ القرار</h3></div></div><p>تتابع الإدارة العليا النتائج في لوحة موحدة، وتراجع ما يحتاج إلى انتباه أو إجراء.</p></article>
     </div></div></section>
+        <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">إجابات واضحة</span><h2 id="faq-title">أسئلة شائعة</h2><p>إجابات مختصرة عن استخدام KPI Central والتجربة والباقات.</p></div>
+        <div class="faq-list">
+          <details class="faq-item"><summary><span class="faq-number">01</span><span class="faq-question">هل نحتاج إلى مستشار استراتيجي لاستخدام KPI Central؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>لا. يمكنك استخدام KPI Central لمتابعة المؤشرات وعرض نتائج الإدارات دون الحاجة إلى مستشار استراتيجي. يتولى فريق منشأتك تحديث البيانات، وتساعدكم المنصة على متابعة الأداء واتخاذ القرارات.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">02</span><span class="faq-question">ماذا يشمل الإصدار التجريبي المجاني؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>تجربة مجانية لمدة 14 يوماً، دون الحاجة إلى بطاقة دفع، وتشمل مزايا الباقة الأساسية.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">03</span><span class="faq-question">كيف أبدأ التجربة المجانية، ومتى تبدأ أيامها؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>تبدأ بإنشاء حساب للمنشأة، وتستمر التجربة لمدة 14 يوماً. لا تحتاج إلى إدخال بيانات بطاقة دفع لبدئها.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">04</span><span class="faq-question">كم عدد مدخلي البيانات المسموح به في كل باقة؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>تشمل الباقة الأساسية 11 مستخدماً، والاحترافية 13 مستخدماً، أما باقة الأعمال المتخصصة فتتيح عدداً مفتوحاً من المستخدمين.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">05</span><span class="faq-question">هل يمكن تعديل المؤشرات أو إضافة مجالات جديدة؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>يمكن تعديل المؤشرات الموجودة في جميع الباقات. لا تتيح الأساسية إضافة مجالات، وتسمح الاحترافية بإضافة مجالين، بينما تتيح باقة الأعمال المتخصصة إضافة مجالات دون حد.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">06</span><span class="faq-question">هل يُحتسب الآدمن أو الرئيس التنفيذي أو المسؤول الأعلى ضمن عدد مدخلي البيانات؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>لا. حد المستخدمين في الباقات مخصص لمدخلي البيانات، ولا يُحتسب الآدمن أو الرئيس التنفيذي أو المسؤول الأعلى ضمن هذا العدد.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">07</span><span class="faq-question">هل الاشتراك السنوي يتجدد تلقائياً؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>نعم، إذا اخترت التجديد التلقائي، وفق دورة الدفع التي اخترتها، شهرية أو سنوية.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">08</span><span class="faq-question">من يستطيع الاطلاع على بيانات المنشأة؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>يقتصر الاطلاع على مستخدمي المنشأة المصرح لهم بالدخول إلى حسابها.</p></div></details>
+          <details class="faq-item"><summary><span class="faq-number">09</span><span class="faq-question">هل يمكن عرض مؤشرات الإدارات على شاشة تلفاز؟</span><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>نعم، يمكن عرض لوحة الأداء على شاشة تلفاز. وتشمل الباقات الشاشة وملحقاتها، وتصبح ملكاً للعميل بعد إتمام 12 شهراً من الاشتراك.</p></div></details>
+        </div>
+      </div>
+    </section>
     <section class="contact-section" id="contact"><div class="container"><div class="contact-panel">
       <div class="contact-intro"><span class="eyebrow">إظهار الاهتمام</span><h2>ما الذي تحتاجه منشأتك؟</h2><p>أرسل بياناتك لنبقى على تواصل حول KPI Central، وناقش احتياج منشأتك وطريقة تهيئة الأداة. هذا النموذج جزء من التصور البصري فقط.</p><div class="contact-points"><div><span>١</span>اختر الحل المناسب لاحتياجك</div><div><span>٢</span>أرسل بيانات المنشأة والتواصل</div><div><span>٣</span>ناقش تفاصيل الإعداد والتأسيس</div></div></div>
       <div class="contact-form-card"><div class="form-title">بيانات التواصل</div>
