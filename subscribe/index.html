@@ -669,7 +669,7 @@
           try { result = text ? JSON.parse(text) : {}; } catch (_) {}
 
           if (isDuplicate(result, text, response)) {
-            setStatus("هذا البريد مستخدم سابقاً. انتقل إلى <a href="../login/">تسجيل الدخول</a>.", "warning", true);
+            setStatus('هذا البريد مستخدم سابقاً. انتقل إلى <a href="../login/">تسجيل الدخول</a>.', "warning", true);
             return;
           }
 
