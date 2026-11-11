@@ -3,694 +3,75 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="طلب اشتراك في منصة كي بي آي سنترال">
-  <title>طلب الاشتراك | KPI Central</title>
+  <meta name="theme-color" content="#102f55">
+  <title>ابدأ اشتراكك | KPI Central</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #C69A4A;
-      --primary-dark: #102F55;
-      --page: #F7F3EC;
-      --card: #FFFFFF;
-      --border: #E6DED2;
-      --text: #26384F;
-      --muted: #6B7480;
-      --success: #16A34A;
-      --danger: #DC2626;
-      --warning: #F59E0B;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-width: 320px;
-      background: var(--page);
-      color: var(--text);
-      font-family: "Avenir Arabic Heavy", "Avenir Arabic", "Avenir Next Arabic", "Noto Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    a { color: var(--primary-dark); }
-
-    .page {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 54px;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 34px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #102F55;
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .brand-mark {
-      display: grid;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      border-radius: 10px;
-      background: #102F55;
-      color: #F2C66D;
-      font-size: 21px;
-      font-weight: 800;
-    }
-
-    .brand-copy small {
-      display: block;
-      margin-top: -3px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 500;
-    }
-
-    .back-link {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .back-link:hover { color: var(--primary-dark); }
-
-    .intro {
-      max-width: 760px;
-      margin: 0 auto 26px;
-      text-align: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 7px;
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    h1 {
-      margin: 0;
-      color: #102F55;
-      font-size: clamp(24px, 4vw, 34px);
-      line-height: 1.35;
-    }
-
-    .intro p {
-      margin: 10px 0 0;
-      color: var(--muted);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(290px, .85fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px;
-      box-shadow: 0 5px 18px rgba(15, 23, 42, .04);
-    }
-
-    .card h2 {
-      margin: 0 0 17px;
-      color: #102F55;
-      font-size: 18px;
-    }
-
-    .fields {
-      display: grid;
-      gap: 14px;
-    }
-
-    .two-fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .required { color: var(--danger); }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: #fff;
-      color: var(--text);
-      padding: 11px 12px;
-      font: inherit;
-      outline: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(198, 154, 74, .16);
-    }
-
-    textarea {
-      min-height: 98px;
-      resize: vertical;
-    }
-
-    .plans {
-      display: grid;
-      gap: 10px;
-    }
-
-    .plan {
-      position: relative;
-      display: block;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 13px 14px;
-      cursor: pointer;
-      transition: border-color .15s ease, background .15s ease;
-    }
-
-    .plan:hover { border-color: #D8AD5D; }
-
-    .plan.selected {
-      border-color: var(--primary);
-      background: #F8F3E9;
-      box-shadow: 0 0 0 2px rgba(198, 154, 74, .10);
-    }
-
-    .plan input {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .plan-title {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: #102F55;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .plan-price {
-      color: var(--primary-dark);
-      white-space: nowrap;
-    }
-
-    .plan-note {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .field-spacing { margin-top: 17px; }
-
-    .summary {
-      display: grid;
-      gap: 9px;
-      margin-top: 18px;
-      padding: 14px;
-      border: 1px solid #EEE3CB;
-      border-radius: 10px;
-      background: #FFFDF9;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .summary-row strong {
-      color: var(--text);
-      font-size: 13px;
-    }
-
-    .notice {
-      margin-top: 16px;
-      padding: 11px 13px;
-      border: 1px solid #FDE68A;
-      border-radius: 9px;
-      background: #FFFBEB;
-      color: #854D0E;
-      font-size: 12px;
-    }
-
-    .status {
-      display: none;
-      margin-top: 15px;
-      padding: 12px 14px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .status.visible { display: block; }
-    .status.success { border: 1px solid #BBF7D0; background: #F0FDF4; color: #166534; }
-    .status.error { border: 1px solid #FECACA; background: #FEF2F2; color: #991B1B; }
-    .status.warning { border: 1px solid #FDE68A; background: #FFFBEB; color: #854D0E; }
-
-    .status a { font-weight: 800; }
-
-    .submit-button, .fallback-button {
-      width: 100%;
-      min-height: 46px;
-      border: 0;
-      border-radius: 9px;
-      padding: 10px 16px;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .submit-button {
-      margin-top: 16px;
-      background: var(--primary);
-      color: #102F55;
-    }
-
-    .submit-button:hover { background: var(--primary-dark); }
-
-    .submit-button:disabled,
-    .fallback-button:disabled {
-      cursor: wait;
-      opacity: .65;
-    }
-
-    .fallback-button {
-      margin-top: 10px;
-      border: 1px solid #E6DED2;
-      background: #fff;
-      color: var(--primary-dark);
-    }
-
-    .helper {
-      margin: 11px 0 0;
-      color: var(--muted);
-      font-size: 11px;
-      text-align: center;
-    }
-
-    .side-list {
-      display: grid;
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .side-list li {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 10px;
-      align-items: start;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .side-list li::before {
-      display: grid;
-      width: 28px;
-      height: 28px;
-      place-items: center;
-      border-radius: 8px;
-      background: #F8F3E9;
-      color: var(--primary-dark);
-      content: "✓";
-      font-weight: 800;
-    }
-
-    .side-note {
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .processing {
-      position: fixed;
-      z-index: 10;
-      inset: 0;
-      display: none;
-      place-items: center;
-      background: rgba(248, 250, 252, .76);
-      backdrop-filter: blur(2px);
-    }
-
-    .processing.visible { display: grid; }
-
-    .processing-card {
-      width: min(360px, calc(100% - 36px));
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, .12);
-      text-align: center;
-    }
-
-    .spinner {
-      width: 32px;
-      height: 32px;
-      margin: 0 auto 13px;
-      border: 3px solid #EEE3CB;
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .processing-card strong {
-      display: block;
-      color: #102F55;
-      font-size: 15px;
-    }
-
-    .processing-card span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    @media (max-width: 760px) {
-      .page { width: min(100% - 24px, 560px); padding-top: 18px; }
-      .topbar { margin-bottom: 25px; }
-      .layout { grid-template-columns: 1fr; }
-      .two-fields { grid-template-columns: 1fr; gap: 0; }
-      .card { padding: 18px; }
-    }
+    :root{--navy:#102f55;--navy-deep:#0b223b;--gold:#c69a4a;--gold-light:#dfba72;--cream:#f7f3ec;--paper:#fffdf9;--text:#26384f;--muted:#6b7480;--border:#e6ded2;--green:#347d4b;--red:#a43434;--shadow:0 22px 52px -34px rgba(16,47,85,.32)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(180deg,#fbfaf7 0%,var(--cream) 100%);color:var(--text);font-family:'Noto Sans Arabic',Calibri,sans-serif;font-size:14px;line-height:1.8}a{color:inherit}.wrap{width:min(1060px,calc(100% - 32px));margin:auto}.top{background:linear-gradient(120deg,var(--navy),var(--navy-deep));color:#fff}.top-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;font-size:19px;letter-spacing:-.2px}.brand span{color:var(--gold-light)}.back{color:#fff;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #ffffff55;border-radius:9px;padding:8px 12px}.intro{padding:34px 0 20px}.eyebrow{color:#a27b3d;font-size:11px;font-weight:900}.intro h1{font-size:clamp(24px,3vw,34px);line-height:1.35;color:var(--navy);margin:7px 0 8px}.intro p{margin:0;color:var(--muted);font-size:14px}.card{background:var(--paper);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin:0 0 42px}.section-title{color:var(--navy);font-size:16px;margin:0 0 14px;font-weight:900}.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:22px}.plan{position:relative;display:block;padding:15px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;transition:border .2s,box-shadow .2s}.plan:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #c69a4a22;background:#fffdf8}.plan input{position:absolute;top:17px;left:16px;accent-color:var(--navy);width:17px;height:17px}.plan strong{display:block;padding-left:25px;color:var(--navy);font-size:14px}.price{display:block;margin-top:6px;color:#8a6934;font-weight:900;font-size:12px}.feature{display:block;margin-top:7px;color:var(--muted);font-size:11px}.enterprise-plan{cursor:default;background:#f8f5ef}.enterprise-contact{display:block;margin-top:10px;padding:8px 10px;border-radius:8px;background:linear-gradient(135deg,#dfba72,#c4913c);color:var(--navy);text-align:center;text-decoration:none;font-size:11px;font-weight:900}.billing{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 22px;padding:14px;background:#f8f5ef;border-radius:12px}.billing label{display:flex;align-items:center;gap:7px;cursor:pointer;font-weight:800;font-size:12px}.billing input{accent-color:var(--navy)}.amount{margin-right:auto;color:var(--navy);font-size:13px;font-weight:900}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 16px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800;color:#34465b}.field input,.field select,.field textarea{width:100%;min-height:44px;border:1px solid #ddd8ce;border-radius:9px;background:#fff;padding:10px 12px;color:var(--text);font:inherit;font-size:13px;outline:none}.field textarea{min-height:92px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c69a4a20}.notes{font-weight:400;color:var(--muted)}.notices{margin:18px 0 20px;padding:12px 15px;border:1px solid #eadfc9;border-radius:10px;background:#fbf8f1;color:#5e6266;font-size:11px}.notices p{margin:3px 0}.submit{width:100%;min-height:48px;border:0;border-radius:10px;background:linear-gradient(135deg,#dfba72,#c4913c);color:var(--navy);font:inherit;font-weight:900;font-size:14px;cursor:pointer}.submit:disabled{opacity:.7;cursor:wait}.status{display:none;margin-top:16px;padding:15px;border-radius:10px;font-size:13px}.status.show{display:block}.status.success{background:#edf7ee;border:1px solid #b9d9bd;color:#255f31}.status.error{background:#fff0ee;border:1px solid #ecc7c3;color:#8d2929}.status a{font-weight:900}.smallprint{text-align:center;color:var(--muted);font-size:10px;padding:0 0 26px}
+    @media(max-width:760px){.plans{grid-template-columns:1fr}.plan{padding:13px}.card{padding:17px}.top-inner{min-height:64px}.intro{padding-top:26px}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr;gap:12px}.field.full{grid-column:auto}.billing{align-items:flex-start}.amount{width:100%;margin-right:0}.intro h1{font-size:25px}.back{font-size:11px;padding:7px 9px}}
   </style>
 </head>
 <body>
-  <div class="processing" id="processing" aria-hidden="true">
-    <div class="processing-card" role="status" aria-live="polite">
-      <div class="spinner" aria-hidden="true"></div>
-      <strong>جارٍ إرسال طلب الاشتراك</strong>
-      <span>يرجى الانتظار، قد تستغرق العملية عدة ثوان.</span>
-    </div>
-  </div>
-
-  <main class="page">
-    <header class="topbar">
-      <a class="brand" href="../" aria-label="العودة إلى الصفحة الرئيسية">
-        <span class="brand-mark" aria-hidden="true">ك</span>
-        <span class="brand-copy">كي بي آي سنترال<small>منصة مؤشرات الأداء</small></span>
-      </a>
-      <a class="back-link" href="../">العودة إلى الموقع</a>
-    </header>
-
-    <section class="intro">
-      <span class="eyebrow">طلب اشتراك جديد</span>
-      <h1>ابدأ اشتراكك في KPI Central</h1>
-      <p>أرسل بيانات منشأتك والمسؤول، واختر الباقة وفترة الاشتراك المناسبة. لا يتم الدفع الإلكتروني في هذه الصفحة.</p>
-    </section>
-
-    <div class="layout">
-      <section class="card">
-        <h2>بيانات المنشأة والمسؤول</h2>
-        <form id="requestForm" novalidate>
-          <div class="fields">
-            <div>
-              <label for="organizationName">اسم المنشأة <span class="required">*</span></label>
-              <input id="organizationName" name="organization_name" required autocomplete="organization">
-            </div>
-
-            <div>
-              <label for="ownerName">اسم المسؤول <span class="required">*</span></label>
-              <input id="ownerName" name="owner_name" required autocomplete="name">
-            </div>
-
-            <div class="two-fields">
-              <div>
-                <label for="ownerEmail">البريد الإلكتروني <span class="required">*</span></label>
-                <input id="ownerEmail" name="owner_email" type="email" required autocomplete="email">
-              </div>
-              <div>
-                <label for="ownerPhone">رقم الجوال <span class="required">*</span></label>
-                <input id="ownerPhone" name="owner_phone" type="tel" required autocomplete="tel">
-              </div>
-            </div>
-
-            <div>
-              <label for="notes">ملاحظات اختيارية</label>
-              <textarea id="notes" name="notes" placeholder="اكتب أي ملاحظة تساعدنا على فهم احتياج المنشأة"></textarea>
-            </div>
-          </div>
-
-          <div class="notice">هذه الصفحة لتسجيل طلب الاشتراك فقط؛ لا تتطلب كلمة مرور ولا تنفذ أي عملية دفع إلكتروني.</div>
-          <div class="status" id="status" role="status" aria-live="polite"></div>
-          <button class="submit-button" id="submitButton" type="submit">إرسال طلب الاشتراك</button>
-          <button class="fallback-button" id="fallbackButton" type="button" hidden>إرسال النموذج المباشر إلى جوجل</button>
-          <p class="helper">بعد نجاح الحفظ سيظهر رقم الطلب في هذه الصفحة.</p>
-        </form>
-
-        <form id="directForm" action="https://script.google.com/macros/s/AKfycbyOEVPOYOyl1zUlV7TStHXjIBNMS6PHxvSW2g2rRQJ5C5c8RHu7aWZhDQ7ilnthKc3T/exec" method="post" target="_blank" hidden>
-          <input name="organization_name">
-          <input name="owner_name">
-          <input name="owner_email">
-          <input name="owner_phone">
-          <input name="plan_code">
-          <input name="billing_interval">
-          <input name="notes">
-        </form>
-      </section>
-
-      <aside class="card">
-        <h2>اختيار الباقة</h2>
-        <div class="plans" id="plans">
-          <label class="plan selected">
-            <input type="radio" name="plan_code" value="basic" checked>
-            <span class="plan-title"><span>الباقة الأساسية</span><span class="plan-price" data-monthly="شهري" data-annual="سنوي">شهري</span></span>
-            <span class="plan-note">بداية عملية لإدارة مؤشرات الأداء</span>
-          </label>
-          <label class="plan">
-            <input type="radio" name="plan_code" value="professional">
-            <span class="plan-title"><span>الباقة الاحترافية</span><span class="plan-price" data-monthly="شهري" data-annual="سنوي">شهري</span></span>
-            <span class="plan-note">لمنشآت تحتاج إلى مجالات مخصصة</span>
-          </label>
-          <label class="plan">
-            <input type="radio" name="plan_code" value="specialized_business">
-            <span class="plan-title"><span>الأعمال المتخصصة</span><span class="plan-price" data-monthly="شهري" data-annual="سنوي">شهري</span></span>
-            <span class="plan-note">مرونة أعلى في تصميم مجالات الأداء</span>
-          </label>
-        </div>
-
-        <div class="field-spacing">
-          <label for="billingInterval">فترة الاشتراك <span class="required">*</span></label>
-          <select id="billingInterval" name="billing_interval">
-            <option value="monthly">شهري</option>
-            <option value="annual">سنوي</option>
-          </select>
-        </div>
-
-        <div class="summary">
-          <div class="summary-row"><span>الباقة المختارة</span><strong id="summaryPlan">الباقة الأساسية</strong></div>
-          <div class="summary-row"><span>فترة الاشتراك</span><strong id="summaryInterval">شهري</strong></div>
-        </div>
-
-        <ul class="side-list" style="margin-top:18px">
-          <li>يتم حفظ بيانات الطلب في جدول جوجل عبر واجهة جوجل.</li>
-          <li>يظهر رقم الطلب بعد نجاح الإرسال.</li>
-          <li>إذا كان البريد مسجلاً سابقاً ستظهر رسالة الانتقال إلى تسجيل الدخول.</li>
-        </ul>
-
-        <p class="side-note">لا حاجة إلى إرسال بيانات البطاقة في هذه الصفحة.</p>
-      </aside>
-    </div>
+  <header class="top"><div class="wrap top-inner"><a class="brand" href="/" aria-label="العودة إلى KPI Central">KPI <span>Central</span></a><a class="back" href="/">العودة إلى الموقع</a></div></header>
+  <main class="wrap">
+    <section class="intro"><span class="eyebrow">طلب اشتراك</span><h1>ابدأ اشتراكك في KPI Central</h1><p>تجربة مجانية لمدة 14 يوماً دون بطاقة دفع، ثم اختر الباقة المناسبة لمنشأتك.</p></section>
+    <form class="card" id="subscribe-form" novalidate>
+      <h2 class="section-title">اختر الباقة المناسبة</h2>
+      <div class="plans" role="radiogroup" aria-label="الباقة">
+        <label class="plan"><input type="radio" name="plan_code" value="basic" checked><strong>الأساسية</strong><span class="price">500 ريال شهرياً · 5,500 ريال سنوياً</span><span class="feature">11 مدخلاً للبيانات · المجالات المخصصة غير متاحة</span></label>
+        <label class="plan"><input type="radio" name="plan_code" value="professional"><strong>الاحترافية</strong><span class="price">800 ريال شهرياً · 8,800 ريال سنوياً</span><span class="feature">13 مدخلاً للبيانات · مجالان إضافيان</span></label>
+        <div class="plan enterprise-plan"><strong>الأعمال المتخصصة</strong><span class="price">سعر مخصص حسب احتياج المنشأة</span><span class="feature">عدد المستخدمين والمجالات حسب الاتفاق. تواصل معنا لتحديد المتطلبات والتسعير.</span><a class="enterprise-contact" href="/#contact">تواصل معنا</a></div>
+      </div>
+      <h2 class="section-title">فترة الاشتراك</h2>
+      <div class="billing" role="radiogroup" aria-label="فترة الاشتراك"><label><input type="radio" name="billing_interval" value="monthly" checked> شهري</label><label><input type="radio" name="billing_interval" value="annual"> سنوي</label><output class="amount" id="selected-amount" aria-live="polite">500 ريال شهرياً</output></div>
+      <h2 class="section-title">بيانات المنشأة والمسؤول</h2>
+      <div class="grid">
+        <div class="field"><label for="organization">اسم المنشأة <span aria-hidden="true">*</span></label><input id="organization" name="organization_name" required minlength="2" autocomplete="organization" maxlength="180"></div>
+        <div class="field"><label for="owner">اسم المسؤول <span aria-hidden="true">*</span></label><input id="owner" name="owner_name" required autocomplete="name" maxlength="120"></div>
+        <div class="field"><label for="email">البريد الإلكتروني <span aria-hidden="true">*</span></label><input id="email" name="owner_email" type="email" required autocomplete="email" maxlength="254" dir="ltr"></div>
+        <div class="field"><label for="phone">رقم الجوال <span aria-hidden="true">*</span></label><input id="phone" name="owner_phone" type="tel" required autocomplete="tel" maxlength="30" dir="ltr"></div>
+        <div class="field full"><label for="notes">ملاحظات إضافية <span class="notes">(اختياري)</span></label><textarea id="notes" name="notes" maxlength="2000"></textarea></div>
+      </div>
+      <div class="notices"><p>• التجربة المجانية لمدة 14 يوماً، ولا تحتاج إلى بطاقة دفع.</p><p>• تستخدم التجربة صلاحيات الباقة الأساسية.</p><p>• لا يتم تحصيل أي مبلغ إلكترونياً من خلال هذا النموذج.</p></div>
+      <button class="submit" id="submit-button" type="submit">إنشاء طلب الاشتراك وبدء التجربة</button>
+      <div class="status" id="form-status" role="status" aria-live="polite"></div>
+    </form>
+    <p class="smallprint">KPI Central · متابعة الأداء المؤسسي</p>
   </main>
-
   <script>
-    (function () {
-      const endpoint = "https://script.google.com/macros/s/AKfycbyOEVPOYOyl1zUlV7TStHXjIBNMS6PHxvSW2g2rRQJ5C5c8RHu7aWZhDQ7ilnthKc3T/exec";
-      const form = document.getElementById("requestForm");
-      const directForm = document.getElementById("directForm");
-      const submitButton = document.getElementById("submitButton");
-      const fallbackButton = document.getElementById("fallbackButton");
-      const statusBox = document.getElementById("status");
-      const processing = document.getElementById("processing");
-      const billingInterval = document.getElementById("billingInterval");
-      const summaryPlan = document.getElementById("summaryPlan");
-      const summaryInterval = document.getElementById("summaryInterval");
-      const planLabels = Array.from(document.querySelectorAll(".plan"));
-      const planNames = {
-        basic: "الباقة الأساسية",
-        professional: "الباقة الاحترافية",
-        specialized_business: "الأعمال المتخصصة"
-      };
-
-      function selectedPlan() {
-        return document.querySelector('input[name="plan_code"]:checked');
-      }
-
-      function setStatus(message, type, html) {
-        statusBox.innerHTML = html ? message : "";
-        if (!html) statusBox.textContent = message;
-        statusBox.className = "status visible " + type;
-      }
-
-      function updateSummary() {
-        const selected = selectedPlan();
-        const interval = billingInterval.value;
-        planLabels.forEach(function (label) {
-          label.classList.toggle("selected", label.querySelector("input").checked);
-        });
-        summaryPlan.textContent = planNames[selected.value];
-        summaryInterval.textContent = interval === "monthly" ? "شهري" : "سنوي";
-      }
-
-      function makePayload() {
-        return {
-          organization_name: document.getElementById("organizationName").value.trim(),
-          owner_name: document.getElementById("ownerName").value.trim(),
-          owner_email: document.getElementById("ownerEmail").value.trim(),
-          owner_phone: document.getElementById("ownerPhone").value.trim(),
-          plan_code: selectedPlan().value,
-          billing_interval: billingInterval.value,
-          notes: document.getElementById("notes").value.trim()
-        };
-      }
-
-      function readValue(object, keys) {
-        let current = object;
-        for (const key of keys) {
-          if (!current || typeof current !== "object") return "";
-          current = current[key];
-        }
-        return current == null ? "" : String(current);
-      }
-
-      function getRequestNumber(result, text) {
-        const paths = [
-          ["request_number"], ["request_id"], ["order_number"], ["order_id"],
-          ["requestNumber"], ["requestId"], ["orderNumber"], ["orderId"],
-          ["data", "request_number"], ["data", "request_id"],
-          ["result", "request_number"], ["result", "request_id"]
-        ];
-        if (result && typeof result === "object") {
-          for (const path of paths) {
-            const value = readValue(result, path);
-            if (value) return value;
+    (()=>{
+      const endpoint='https://script.google.com/macros/s/AKfycbyOEVPOYOyl1zUlV7TStHXjIBNMS6PHxvSW2g2rRQJ5C5c8RHu7aWZhDQ7ilnthKc3T/exec';
+      const prices={basic:{monthly:'500',annual:'5,500'},professional:{monthly:'800',annual:'8,800'}};
+      const form=document.getElementById('subscribe-form'),button=document.getElementById('submit-button'),status=document.getElementById('form-status'),amount=document.getElementById('selected-amount');
+      const updateAmount=()=>{const plan=form.elements.plan_code.value,period=form.elements.billing_interval.value;amount.textContent=prices[plan][period]+' ريال '+(period==='annual'?'سنوياً':'شهرياً')};
+      form.addEventListener('change',event=>{if(event.target.name==='plan_code'||event.target.name==='billing_interval')updateAmount()});
+      const show=(kind,html)=>{status.className='status show '+kind;status.innerHTML=html;status.scrollIntoView({behavior:'smooth',block:'nearest'})};
+      const duplicate=result=>{const text=[result?.status,result?.code,result?.message,result?.error,result?.reason].filter(Boolean).join(' ').toLowerCase();return result?.duplicate===true||result?.emailExists===true||result?.email_exists===true||/duplicate|already.?exist|email.?used|user.?exists|مستخدم|مسجل|موجود مسبق/.test(text)};
+      const requestId=result=>result?.requestNumber||result?.request_number||result?.requestId||result?.request_id||result?.orderId||result?.order_id||result?.id||'';
+      form.addEventListener('submit',async event=>{
+        event.preventDefault();status.className='status';
+        if(!form.reportValidity())return;
+        const payload=Object.fromEntries(new FormData(form).entries());payload.action='subscription_request';payload.source='kpi-central.com';payload.plan_name={basic:'الأساسية',professional:'الاحترافية'}[payload.plan_code];
+        button.disabled=true;button.textContent='جارٍ إرسال الطلب…';
+        try{
+          const response=await fetch(endpoint,{method:'POST',mode:'cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
+          const raw=await response.text();let result;try{result=JSON.parse(raw)}catch{result={message:raw}}
+          if(duplicate(result)){
+            show('error','هذا البريد الإلكتروني مسجل لدينا مسبقاً. انتقل إلى <a href="https://script.google.com/a/kpi-central.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">دخول العملاء</a> لتسجيل الدخول.');return;
           }
-        }
-        const match = String(text || "").match(/(?:رقم الطلب|request(?: number| id)?|order(?: number| id)?)\s*[:#-]?\s*([A-Za-z0-9-]+)/i);
-        return match ? match[1] : "";
-      }
-
-      function isDuplicate(result, text, response) {
-        const source = (JSON.stringify(result || {}) + " " + String(text || "")).toLowerCase();
-        return response && response.status === 409
-          || /مستخدم سابق|مسجل سابق|بريد مستخدم|duplicate|already exists|already registered|email exists/.test(source);
-      }
-
-      function fillDirectForm(payload) {
-        Object.keys(payload).forEach(function (key) {
-          const input = directForm.elements.namedItem(key);
-          if (input) input.value = payload[key];
-        });
-      }
-
-      function setBusy(isBusy) {
-        submitButton.disabled = isBusy;
-        processing.classList.toggle("visible", isBusy);
-        processing.setAttribute("aria-hidden", String(!isBusy));
-      }
-
-      document.querySelectorAll('input[name="plan_code"]').forEach(function (input) {
-        input.addEventListener("change", updateSummary);
+          const id=requestId(result),ok=response.ok&&(result?.success===true||result?.ok===true||['success','accepted','created'].includes(String(result?.status||'').toLowerCase())||Boolean(id));
+          if(ok){show('success','تم قبول طلبك بنجاح. رقم الطلب: <strong dir="ltr">'+escapeHtml(String(id||'قيد الإصدار'))+'</strong>.');form.reset();updateAmount();return}
+          const message=String(result?.message||result?.error||'تعذر إكمال الطلب حالياً. حاول مرة أخرى لاحقاً.');show('error',escapeHtml(message));
+        }catch(error){show('error','تعذر الاتصال بخدمة الطلبات. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.');}
+        finally{button.disabled=false;button.textContent='إنشاء طلب الاشتراك وبدء التجربة'}
       });
-      billingInterval.addEventListener("change", updateSummary);
-
-      fallbackButton.addEventListener("click", function () {
-        const payload = makePayload();
-        fillDirectForm(payload);
-        fallbackButton.disabled = true;
-        setStatus("سيتم فتح نتيجة الإرسال المباشر في نافذة جديدة.", "warning");
-        directForm.submit();
-        window.setTimeout(function () { fallbackButton.disabled = false; }, 2500);
-      });
-
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-
-        const payload = makePayload();
-        fillDirectForm(payload);
-        fallbackButton.hidden = true;
-        setBusy(true);
-        setStatus("جارٍ إرسال الطلب، يرجى الانتظار.", "success");
-
-        try {
-          const response = await fetch(endpoint, {
-            method: "POST",
-            mode: "cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-          const text = await response.text();
-          let result = {};
-          try { result = text ? JSON.parse(text) : {}; } catch (_) {}
-
-          if (isDuplicate(result, text, response)) {
-            setStatus('هذا البريد مستخدم سابقاً. انتقل إلى <a href="../login/">تسجيل الدخول</a>.', "warning", true);
-            return;
-          }
-
-          if (!response.ok) throw new Error("request_failed");
-
-          const requestNumber = getRequestNumber(result, text);
-          if (!requestNumber) throw new Error("missing_request_number");
-
-          setStatus("تم إرسال الطلب بنجاح. رقم الطلب: " + requestNumber + ". تم قبول الطلب مباشرة.", "success");
-          form.reset();
-          updateSummary();
-        } catch (error) {
-          fallbackButton.hidden = false;
-          setStatus("تعذر قراءة رد واجهة جوجل من المتصفح. يمكنك استخدام إرسال النموذج المباشر لإكمال الطلب دون منصة إضافية.", "warning");
-        } finally {
-          setBusy(false);
-        }
-      });
-
-      updateSummary();
-    }());
+      function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}
+      const selected=new URLSearchParams(location.search).get('plan');if(['basic','professional'].includes(selected)){form.querySelector('input[name="plan_code"][value="'+selected+'"]').checked=true;updateAmount()}
+    })();
   </script>
 </body>
 </html>
