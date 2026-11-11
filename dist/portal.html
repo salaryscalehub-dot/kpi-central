@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f1ec">
+  <title>مساحة العمل | KPI Central</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="workspace-page">
+  <header class="workspace-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-copy"><strong>KPI<span>Central</span></strong><small>لوحة الأداء المؤسسي</small></span></a><div class="workspace-head-right"><span class="preview-label">معاينة الواجهات</span><span class="user-avatar">م</span><span class="user-short"><strong id="userDisplayName">مستخدم تجريبي</strong><small id="roleLabel">الآدمن</small></span><button class="exit-link" id="logoutLink" type="button">خروج ↗</button></div></header>
+  <main class="workspace-wrap">
+    <div class="workspace-title-row"><div><span class="section-index">مساحة العميل</span><h1>مساحة العمل</h1><p id="workspaceSubtitle">تختلف الخيارات المعروضة بحسب دور المستخدم وصلاحياته.</p></div><div class="client-mark"><small>مساحة العميل</small><strong id="companyName">شركة تجريبية</strong></div></div>
+    <p id="portalStatus" class="portal-status" role="status" aria-live="polite" hidden></p>
+    <section class="preview-switch"><div><span class="switch-index">تبديل العرض</span><p>اختر الدور لمشاهدة نموذج الواجهة المناسبة له.</p></div><div class="role-tabs" role="group" aria-label="اختيار واجهة المعاينة"><button class="role-tab is-active" type="button" data-role="admin">الآدمن</button><button class="role-tab" type="button" data-role="manager">مدير الإدارة</button><button class="role-tab" type="button" data-role="executive">الرئيس التنفيذي</button></div></section>
+    <div class="workspace-content-heading"><span id="workspaceEyebrow">صلاحيات النظام</span><span class="sample-warning"><i></i> عناصر توضيحية، غير مرتبطة بحساب فعلي</span></div>
+    <section class="workspace-grid" id="workspaceCards" aria-live="polite"></section>
+    <section class="workspace-info"><span class="info-index">01</span><div><h2>كل عميل في مساحة مستقلة</h2><p>بعد الربط الفعلي، سيفتح الموقع تطبيق العميل وبياناته فقط، مع تطبيق صلاحيات الحساب عند العرض والحفظ.</p></div><span class="info-state">بانتظار الربط</span></section>
+    <footer class="workspace-footer"><span>© <span data-year></span> KPI Central</span><a href="index.html">الموقع الرئيسي ↗</a></footer>
+  </main>
+  <script src="assets/app.js" defer></script>
+  <script type="module" src="assets/portal-auth.js"></script>
+</body>
+</html>

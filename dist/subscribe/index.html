@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102f55">
+  <title>ابدأ اشتراكك | KPI Central</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#102f55;--navy-deep:#0b223b;--gold:#c69a4a;--gold-light:#dfba72;--cream:#f7f3ec;--paper:#fffdf9;--text:#26384f;--muted:#6b7480;--border:#e6ded2;--green:#347d4b;--red:#a43434;--shadow:0 22px 52px -34px rgba(16,47,85,.32)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(180deg,#fbfaf7 0%,var(--cream) 100%);color:var(--text);font-family:'Noto Sans Arabic',Calibri,sans-serif;font-size:14px;line-height:1.8}a{color:inherit}.wrap{width:min(1060px,calc(100% - 32px));margin:auto}.top{background:linear-gradient(120deg,var(--navy),var(--navy-deep));color:#fff}.top-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;font-size:19px;letter-spacing:-.2px}.brand span{color:var(--gold-light)}.back{color:#fff;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #ffffff55;border-radius:9px;padding:8px 12px}.intro{padding:34px 0 20px}.eyebrow{color:#a27b3d;font-size:11px;font-weight:900}.intro h1{font-size:clamp(24px,3vw,34px);line-height:1.35;color:var(--navy);margin:7px 0 8px}.intro p{margin:0;color:var(--muted);font-size:14px}.card{background:var(--paper);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin:0 0 42px}.section-title{color:var(--navy);font-size:16px;margin:0 0 14px;font-weight:900}.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:22px}.plan{position:relative;display:block;padding:15px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;transition:border .2s,box-shadow .2s}.plan:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #c69a4a22;background:#fffdf8}.plan input{position:absolute;top:17px;left:16px;accent-color:var(--navy);width:17px;height:17px}.plan strong{display:block;padding-left:25px;color:var(--navy);font-size:14px}.price{display:block;margin-top:6px;color:#8a6934;font-weight:900;font-size:12px}.feature{display:block;margin-top:7px;color:var(--muted);font-size:11px}.enterprise-plan{cursor:default;background:#f8f5ef}.enterprise-contact{display:block;margin-top:10px;padding:8px 10px;border-radius:8px;background:linear-gradient(135deg,#dfba72,#c4913c);color:var(--navy);text-align:center;text-decoration:none;font-size:11px;font-weight:900}.billing{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 22px;padding:14px;background:#f8f5ef;border-radius:12px}.billing label{display:flex;align-items:center;gap:7px;cursor:pointer;font-weight:800;font-size:12px}.billing input{accent-color:var(--navy)}.amount{margin-right:auto;color:var(--navy);font-size:13px;font-weight:900}.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 16px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800;color:#34465b}.field input,.field select,.field textarea{width:100%;min-height:44px;border:1px solid #ddd8ce;border-radius:9px;background:#fff;padding:10px 12px;color:var(--text);font:inherit;font-size:13px;outline:none}.field textarea{min-height:92px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c69a4a20}.notes{font-weight:400;color:var(--muted)}.notices{margin:18px 0 20px;padding:12px 15px;border:1px solid #eadfc9;border-radius:10px;background:#fbf8f1;color:#5e6266;font-size:11px}.notices p{margin:3px 0}.submit{width:100%;min-height:48px;border:0;border-radius:10px;background:linear-gradient(135deg,#dfba72,#c4913c);color:var(--navy);font:inherit;font-weight:900;font-size:14px;cursor:pointer}.submit:disabled{opacity:.7;cursor:wait}.status{display:none;margin-top:16px;padding:15px;border-radius:10px;font-size:13px}.status.show{display:block}.status.success{background:#edf7ee;border:1px solid #b9d9bd;color:#255f31}.status.error{background:#fff0ee;border:1px solid #ecc7c3;color:#8d2929}.status a{font-weight:900}.smallprint{text-align:center;color:var(--muted);font-size:10px;padding:0 0 26px}
+    @media(max-width:760px){.plans{grid-template-columns:1fr}.plan{padding:13px}.card{padding:17px}.top-inner{min-height:64px}.intro{padding-top:26px}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr;gap:12px}.field.full{grid-column:auto}.billing{align-items:flex-start}.amount{width:100%;margin-right:0}.intro h1{font-size:25px}.back{font-size:11px;padding:7px 9px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap top-inner"><a class="brand" href="/" aria-label="العودة إلى KPI Central">KPI <span>Central</span></a><a class="back" href="/">العودة إلى الموقع</a></div></header>
+  <main class="wrap">
+    <section class="intro"><span class="eyebrow">طلب اشتراك</span><h1>ابدأ اشتراكك في KPI Central</h1><p>تجربة مجانية لمدة 14 يوماً دون بطاقة دفع، ثم اختر الباقة المناسبة لمنشأتك.</p></section>
+    <form class="card" id="subscribe-form" novalidate>
+      <h2 class="section-title">اختر الباقة المناسبة</h2>
+      <div class="plans" role="radiogroup" aria-label="الباقة">
+        <label class="plan"><input type="radio" name="plan_code" value="basic" checked><strong>الأساسية</strong><span class="price">500 ريال شهرياً · 5,500 ريال سنوياً</span><span class="feature">11 مدخلاً للبيانات · المجالات المخصصة غير متاحة</span></label>
+        <label class="plan"><input type="radio" name="plan_code" value="professional"><strong>الاحترافية</strong><span class="price">800 ريال شهرياً · 8,800 ريال سنوياً</span><span class="feature">13 مدخلاً للبيانات · مجالان إضافيان</span></label>
+        <div class="plan enterprise-plan"><strong>الأعمال المتخصصة</strong><span class="price">سعر مخصص حسب احتياج المنشأة</span><span class="feature">عدد المستخدمين والمجالات حسب الاتفاق. تواصل معنا لتحديد المتطلبات والتسعير.</span><a class="enterprise-contact" href="/#contact">تواصل معنا</a></div>
+      </div>
+      <h2 class="section-title">فترة الاشتراك</h2>
+      <div class="billing" role="radiogroup" aria-label="فترة الاشتراك"><label><input type="radio" name="billing_interval" value="monthly" checked> شهري</label><label><input type="radio" name="billing_interval" value="annual"> سنوي</label><output class="amount" id="selected-amount" aria-live="polite">500 ريال شهرياً</output></div>
+      <h2 class="section-title">بيانات المنشأة والمسؤول</h2>
+      <div class="grid">
+        <div class="field"><label for="organization">اسم المنشأة <span aria-hidden="true">*</span></label><input id="organization" name="organization_name" required minlength="2" autocomplete="organization" maxlength="180"></div>
+        <div class="field"><label for="owner">اسم المسؤول <span aria-hidden="true">*</span></label><input id="owner" name="owner_name" required autocomplete="name" maxlength="120"></div>
+        <div class="field"><label for="email">البريد الإلكتروني <span aria-hidden="true">*</span></label><input id="email" name="owner_email" type="email" required autocomplete="email" maxlength="254" dir="ltr"></div>
+        <div class="field"><label for="phone">رقم الجوال <span aria-hidden="true">*</span></label><input id="phone" name="owner_phone" type="tel" required autocomplete="tel" maxlength="30" dir="ltr"></div>
+        <div class="field full"><label for="notes">ملاحظات إضافية <span class="notes">(اختياري)</span></label><textarea id="notes" name="notes" maxlength="2000"></textarea></div>
+      </div>
+      <div class="notices"><p>• التجربة المجانية لمدة 14 يوماً، ولا تحتاج إلى بطاقة دفع.</p><p>• تستخدم التجربة صلاحيات الباقة الأساسية.</p><p>• لا يتم تحصيل أي مبلغ إلكترونياً من خلال هذا النموذج.</p></div>
+      <button class="submit" id="submit-button" type="submit">إنشاء طلب الاشتراك وبدء التجربة</button>
+      <div class="status" id="form-status" role="status" aria-live="polite"></div>
+    </form>
+    <p class="smallprint">KPI Central · متابعة الأداء المؤسسي</p>
+  </main>
+  <script>
+    (()=>{
+      const endpoint='https://script.google.com/macros/s/AKfycbyOEVPOYOyl1zUlV7TStHXjIBNMS6PHxvSW2g2rRQJ5C5c8RHu7aWZhDQ7ilnthKc3T/exec';
+      const prices={basic:{monthly:'500',annual:'5,500'},professional:{monthly:'800',annual:'8,800'}};
+      const form=document.getElementById('subscribe-form'),button=document.getElementById('submit-button'),status=document.getElementById('form-status'),amount=document.getElementById('selected-amount');
+      const updateAmount=()=>{const plan=form.elements.plan_code.value,period=form.elements.billing_interval.value;amount.textContent=prices[plan][period]+' ريال '+(period==='annual'?'سنوياً':'شهرياً')};
+      form.addEventListener('change',event=>{if(event.target.name==='plan_code'||event.target.name==='billing_interval')updateAmount()});
+      const show=(kind,html)=>{status.className='status show '+kind;status.innerHTML=html;status.scrollIntoView({behavior:'smooth',block:'nearest'})};
+      const duplicate=result=>{const text=[result?.status,result?.code,result?.message,result?.error,result?.reason].filter(Boolean).join(' ').toLowerCase();return result?.duplicate===true||result?.emailExists===true||result?.email_exists===true||/duplicate|already.?exist|email.?used|user.?exists|مستخدم|مسجل|موجود مسبق/.test(text)};
+      const requestId=result=>result?.requestNumber||result?.request_number||result?.requestId||result?.request_id||result?.orderId||result?.order_id||result?.id||'';
+      form.addEventListener('submit',async event=>{
+        event.preventDefault();status.className='status';
+        if(!form.reportValidity())return;
+        const payload=Object.fromEntries(new FormData(form).entries());payload.action='subscription_request';payload.source='kpi-central.com';payload.plan_name={basic:'الأساسية',professional:'الاحترافية'}[payload.plan_code];
+        button.disabled=true;button.textContent='جارٍ إرسال الطلب…';
+        try{
+          const response=await fetch(endpoint,{method:'POST',mode:'cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
+          const raw=await response.text();let result;try{result=JSON.parse(raw)}catch{result={message:raw}}
+          if(duplicate(result)){
+            show('error','هذا البريد الإلكتروني مسجل لدينا مسبقاً. انتقل إلى <a href="https://script.google.com/a/kpi-central.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">دخول العملاء</a> لتسجيل الدخول.');return;
+          }
+          const id=requestId(result),ok=response.ok&&(result?.success===true||result?.ok===true||['success','accepted','created'].includes(String(result?.status||'').toLowerCase())||Boolean(id));
+          if(ok){show('success','تم قبول طلبك بنجاح. رقم الطلب: <strong dir="ltr">'+escapeHtml(String(id||'قيد الإصدار'))+'</strong>.');form.reset();updateAmount();return}
+          const message=String(result?.message||result?.error||'تعذر إكمال الطلب حالياً. حاول مرة أخرى لاحقاً.');show('error',escapeHtml(message));
+        }catch(error){show('error','تعذر الاتصال بخدمة الطلبات. تحقق من اتصالك بالإنترنت وحاول مرة أخرى.');}
+        finally{button.disabled=false;button.textContent='إنشاء طلب الاشتراك وبدء التجربة'}
+      });
+      function escapeHtml(value){return value.replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}
+      const selected=new URLSearchParams(location.search).get('plan');if(['basic','professional'].includes(selected)){form.querySelector('input[name="plan_code"][value="'+selected+'"]').checked=true;updateAmount()}
+    })();
+  </script>
+</body>
+</html>
