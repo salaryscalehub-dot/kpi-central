@@ -61,7 +61,7 @@
           const response=await fetch(endpoint,{method:'POST',mode:'cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)});
           const raw=await response.text();let result;try{result=JSON.parse(raw)}catch{result={message:raw}}
           if(duplicate(result)){
-            show('error','هذا البريد الإلكتروني مسجل لدينا مسبقاً. انتقل إلى <a href="https://script.google.com/a/kpi-central.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">دخول العملاء</a> لتسجيل الدخول.');return;
+            show('error','هذا البريد الإلكتروني مسجل لدينا مسبقاً. انتقل إلى <a href="https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">دخول العملاء</a> لتسجيل الدخول.');return;
           }
           const id=requestId(result),ok=response.ok&&(result?.success===true||result?.ok===true||['success','accepted','created'].includes(String(result?.status||'').toLowerCase())||Boolean(id));
           if(ok){show('success','تم قبول طلبك بنجاح. رقم الطلب: <strong dir="ltr">'+escapeHtml(String(id||'قيد الإصدار'))+'</strong>.');form.reset();updateAmount();return}
