@@ -14,8 +14,10 @@
 <body>
   <!-- لوحة KPI Central تُعرض داخل هذه الصفحة على kpi-central.com (وليس بالانتقال إلى script.google.com)،
        لأن Google يرفض فتح التطبيق مباشرة لمن يسجّل الدخول بأكثر من حساب في المتصفح.
-       تفاصيل الرابط (تفعيل، تعيين كلمة مرور، تذكير...) تُمرَّر إلى التطبيق كما هي. -->
-  <iframe id="app" title="KPI Central" allow="fullscreen; clipboard-write" allowfullscreen></iframe>
+       تفاصيل الرابط (تفعيل، تعيين كلمة مرور، تذكير...) تُمرَّر إلى التطبيق كما هي.
+       credentialless: يُحمَّل الإطار دون بيانات حساب Google في المتصفح (مثل النافذة الخاصة)،
+       فلا يحاول Google فتحه باسم حساب شخصي من خارج النطاق. -->
+  <iframe id="app" title="KPI Central" credentialless allow="fullscreen; clipboard-write" allowfullscreen></iframe>
   <script>
     (function () {
       var base = 'https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec';
