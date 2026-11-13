@@ -3,12 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">
+  <meta name="robots" content="noindex">
   <title>جاري تحويلك إلى تسجيل الدخول | KPI Central</title>
-  <script>window.location.replace("https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1");</script>
+  <script>
+    // يحوّل إلى لوحة KPI Central مع تمرير تفاصيل الرابط كما هي (تفعيل، تعيين كلمة مرور، تذكير...).
+    // روابط الرسائل تمر من هنا حتى لا يضيف Gmail «/u/N/» إلى رابط Google فيرفض فتحه.
+    (function () {
+      var base = 'https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec';
+      var query = window.location.search && window.location.search.length > 1 ? window.location.search : '?login=1';
+      var target = base + query;
+      window.location.replace(target);
+      document.addEventListener('DOMContentLoaded', function () {
+        var link = document.getElementById('fallback');
+        if (link) link.href = target;
+      });
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1"></noscript>
 </head>
 <body>
   <p>جاري تحويلك إلى صفحة تسجيل الدخول…</p>
-  <p><a href="https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">اضغط هنا إذا لم يتم التحويل تلقائياً</a></p>
+  <p><a id="fallback" href="https://script.google.com/macros/s/AKfycbyxZiMU3TaW2Gg86zrYHybpcK_OrayYRM-3QE0GKMV9HFswVb5t-82bpCFcA-SGLvRV/exec?login=1">اضغط هنا إذا لم يتم التحويل تلقائياً</a></p>
 </body>
 </html>
