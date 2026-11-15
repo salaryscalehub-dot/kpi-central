@@ -32,6 +32,11 @@
     .status{display:none;margin-top:16px;padding:15px;border-radius:10px;font-size:13px}.status.show{display:block}.status.success{background:#edf7ee;border:1px solid #b9d9bd;color:#255f31}.status.error{background:#fff0ee;border:1px solid #ecc7c3;color:#8d2929}
     .center{text-align:center;padding:60px 20px;color:var(--muted)}.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
     .done{text-align:center;padding:34px 20px}.done h2{color:var(--navy);margin:8px 0}.done .icon{font-size:40px}
+    .step{position:relative;padding-top:20px;border-top:4px solid var(--gold-light)}
+    .step-head{display:flex;align-items:center;gap:12px;margin:0 0 18px;padding-bottom:14px;border-bottom:1px solid #efe7da}
+    .step-num{flex:0 0 38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-deep));color:var(--gold-light);display:grid;place-items:center;font-weight:900;font-size:17px}
+    .step-head h2{margin:0;color:var(--navy);font-size:17px;font-weight:900;line-height:1.4}.step-head small{color:var(--muted);font-size:11px}
+    .step.ok{border-top-color:var(--green)}.step.ok .step-num{background:var(--green);color:#fff}
     .smallprint{text-align:center;color:var(--muted);font-size:10px;padding:0 0 26px}
     @media(max-width:1000px){.grid.g5,.grid.g4{grid-template-columns:1fr 1fr}.bank{grid-template-columns:1fr}}
     @media(max-width:760px){.summary{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.card{padding:17px}}
@@ -84,25 +89,25 @@
         const current=payable.some(p=>p.code===wanted)?wanted:(payable.some(p=>p.code===info.planCode)?info.planCode:payable[0].code);
         const interval=wantedInterval==='annual'||wantedInterval==='monthly'?wantedInterval:info.interval;
         const b=info.billing||{};
-        html+='<form class="card" id="pay-form" novalidate><h2 class="section-title">1. بيانات الفوترة</h2>'+
-          '<p class="hint" style="margin:-8px 0 14px">تظهر هذه البيانات في الفاتورة الضريبية. جميع الحقول مطلوبة.</p><div class="grid g5">'+
+        html+='<form id="pay-form" novalidate><section class="card step"><div class="step-head"><span class="step-num">1</span><div><h2>بيانات الفوترة</h2><small>تظهر في الفاتورة الضريبية</small></div></div>'+
+          '<p class="hint" style="margin:0 0 14px">جميع الحقول مطلوبة.</p><div class="grid g5">'+
           '<div class="field"><label for="b-name">الاسم القانوني للمنشأة *</label><input id="b-name" name="legalName" maxlength="180" value="'+esc(b.legalName)+'"></div>'+
           '<div class="field"><label for="b-email">بريد استلام الفواتير *</label><input id="b-email" name="billingEmail" type="email" dir="ltr" value="'+esc(b.email)+'"></div>'+
           '<div class="field"><label for="b-vat">الرقم الضريبي *</label><input id="b-vat" name="vatNumber" inputmode="numeric" maxlength="20" dir="ltr" placeholder="3XXXXXXXXXXXXX3" value="'+esc(b.vatNumber)+'"></div>'+
           '<div class="field"><label for="b-cr">رقم السجل التجاري *</label><input id="b-cr" name="crNumber" inputmode="numeric" maxlength="14" dir="ltr" value="'+esc(b.crNumber)+'"></div>'+
           '<div class="field"><label for="b-addr">العنوان الوطني *</label><input id="b-addr" name="address" maxlength="300" placeholder="رقم المبنى، الشارع، الحي، المدينة، الرمز البريدي" value="'+esc(b.address)+'"></div></div>'+
-          '<h2 class="section-title" style="margin-top:24px">2. اختر الباقة والفترة</h2><div class="plans">'+
+          '</section><section class="card step"><div class="step-head"><span class="step-num">2</span><div><h2>اختر الباقة والفترة</h2><small>المبلغ ومدة الاشتراك</small></div></div><div class="plans">'+
           info.plans.map(p=>p.custom?'<div class="plan custom"><strong>'+esc(p.name)+'</strong><span class="price">سعر مخصص يُتفق عليه حسب احتياج المنشأة</span><a href="/#contact" target="_blank">تواصل معنا</a></div>':'<label class="plan"><input type="radio" name="plan_code" value="'+esc(p.code)+'"'+(p.code===current?' checked':'')+'><strong>'+esc(p.name)+(p.code===info.planCode?' <span class="hint">(باقتك الحالية)</span>':'')+'</strong><span class="price">'+money(p.monthly)+' ريال شهرياً · '+money(p.annual)+' ريال سنوياً</span></label>').join('')+
           '</div><div class="billing"><label><input type="radio" name="billing_interval" value="monthly"'+(interval!=='annual'?' checked':'')+'> شهري</label><label><input type="radio" name="billing_interval" value="annual"'+(interval==='annual'?' checked':'')+'> سنوي</label><span class="save" id="save"></span><output class="amount" id="amount"></output></div><div class="period" id="period"></div>'+
-          '<h2 class="section-title" style="margin-top:24px">3. حوّل المبلغ إلى حسابنا</h2><div class="bank">'+
+          '</section><section class="card step"><div class="step-head"><span class="step-num">3</span><div><h2>حوّل المبلغ إلى حسابنا</h2><small>من تطبيق بنكك</small></div></div><div class="bank">'+
           bankRow('اسم البنك',info.bank.name,false)+bankRow('اسم صاحب الحساب',info.bank.accountName,false)+bankRow('رقم الآيبان',info.bank.iban,true)+'</div>'+
-          '<h2 class="section-title" style="margin-top:24px">4. أرسل بيانات التحويل</h2><div class="grid g4">'+
+          '</section><section class="card step"><div class="step-head"><span class="step-num">4</span><div><h2>أرسل بيانات التحويل</h2><small>لنراجعها ونفعّل اشتراكك</small></div></div><div class="grid g4">'+
           '<div class="field"><label for="payer">اسم صاحب الحساب المحوِّل *</label><input id="payer" name="payer_name" required maxlength="120"></div>'+
           '<div class="field"><label for="ref">رقم مرجع التحويل</label><input id="ref" name="reference" maxlength="80" dir="ltr"></div>'+
           '<div class="field"><label for="date">تاريخ التحويل *</label><input id="date" name="transfer_date" type="date" required></div>'+
           '<div class="field"><label for="receipt">صورة الإيصال <span class="hint">(صورة أو PDF، حتى 5 ميجابايت)</span></label><input id="receipt" name="receipt" type="file" accept="image/*,application/pdf"></div>'+
           '</div><p class="hint" style="margin:10px 0 0">أدخل رقم المرجع أو أرفق الإيصال، أو كليهما لتسريع المراجعة.</p>'+
-          '<button class="submit" id="submit" type="submit">إرسال بيانات التحويل</button><div class="status" id="status" role="status"></div></form>';
+          '<button class="submit" id="submit" type="submit">إرسال بيانات التحويل</button><div class="status" id="status" role="status"></div></section></form>';
         app.innerHTML=html;
         const form=document.getElementById('pay-form'),amountEl=document.getElementById('amount'),saveEl=document.getElementById('save'),status=document.getElementById('status'),button=document.getElementById('submit');
         form.elements.transfer_date.value=new Date().toISOString().slice(0,10);
@@ -117,6 +122,13 @@
         };
         const update=()=>{const p=selected(),annual=form.elements.billing_interval.value==='annual';updatePeriod(annual);amountEl.textContent=money(annual?p.annual:p.monthly)+' ريال';saveEl.textContent=annual&&p.monthly*12>p.annual?'توفّر '+money(p.monthly*12-p.annual)+' ريال':''};
         form.addEventListener('change',e=>{if(e.target.name==='plan_code'||e.target.name==='billing_interval')update()});update();
+        const stepsEls=form.querySelectorAll('.step'),dg=v=>v.replace(/[\s-]/g,'').replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+        const mark=(i,ok)=>{stepsEls[i].classList.toggle('ok',ok);stepsEls[i].querySelector('.step-num').textContent=ok?'✓':String(i+1)};
+        const refreshDone=()=>{const f=form.elements;
+          mark(0,f.legalName.value.trim().length>=2&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.billingEmail.value.trim())&&/^3\d{13}3$/.test(dg(f.vatNumber.value))&&/^\d{10}$/.test(dg(f.crNumber.value))&&!!f.address.value.trim());
+          mark(1,!!form.querySelector('input[name=plan_code]:checked'));
+          mark(3,!!f.payer_name.value.trim()&&(!!f.reference.value.trim()||f.receipt.files.length>0));};
+        form.addEventListener('input',refreshDone);form.addEventListener('change',refreshDone);refreshDone();
         document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy);b.textContent='تم النسخ';setTimeout(()=>b.textContent='نسخ',1500)}));
         const show=(kind,msg)=>{status.className='status show '+kind;status.innerHTML=msg};
         form.addEventListener('submit',async e=>{
