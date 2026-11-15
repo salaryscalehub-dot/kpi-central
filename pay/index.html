@@ -13,7 +13,7 @@
     :root{--navy:#102f55;--navy-deep:#0b223b;--gold:#c69a4a;--gold-light:#dfba72;--cream:#f7f3ec;--paper:#fffdf9;--text:#26384f;--muted:#6b7480;--border:#e6ded2;--green:#347d4b;--red:#a43434;--shadow:0 22px 52px -34px rgba(16,47,85,.32)}
     *{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#fbfaf7 0%,var(--cream) 100%);color:var(--text);font-family:'Noto Sans Arabic',Calibri,sans-serif;font-size:14px;line-height:1.8}
     .wrap{width:calc(100% - 48px);margin:auto}.top{background:linear-gradient(120deg,var(--navy),var(--navy-deep));color:#fff}.top-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{font-weight:900;font-size:19px;color:#fff;text-decoration:none}.brand span{color:var(--gold-light)}.back{color:#fff;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #ffffff55;border-radius:9px;padding:8px 12px}
+    .brand{display:flex;align-items:center}.brand img{display:block;height:46px;width:auto}.brand span{color:var(--gold-light)}.back{color:#fff;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #ffffff55;border-radius:9px;padding:8px 12px}
     .intro{padding:34px 0 20px}.eyebrow{color:#a27b3d;font-size:11px;font-weight:900}.intro h1{font-size:clamp(24px,3vw,34px);line-height:1.35;color:var(--navy);margin:7px 0 8px}.intro p{margin:0;color:var(--muted)}
     .card{background:var(--paper);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin:0 0 22px}
     .section-title{color:var(--navy);font-size:16px;margin:0 0 14px;font-weight:900}
@@ -45,7 +45,7 @@
   </style>
 </head>
 <body>
-  <header class="top"><div class="wrap top-inner"><a class="brand" href="/">KPI <span>Central</span></a><a class="back" href="/login">دخول العملاء</a></div></header>
+  <header class="top"><div class="wrap top-inner"><a class="brand" href="/" aria-label="KPI Central"><img src="/assets/brand/kpi-central-logo-white.webp" alt="KPI Central" width="120" height="49"></a><a class="back" href="/login">دخول العملاء</a></div></header>
   <main class="wrap">
     <section class="intro"><span class="eyebrow">الاشتراك والدفع</span><h1 id="title">اشتراك منشأتك</h1><p id="subtitle">حوّل قيمة الاشتراك إلى حسابنا البنكي، ثم أرسل لنا بيانات التحويل لتفعيل اشتراكك.</p></section>
     <div id="app"><div class="card center"><div class="spinner"></div>جارٍ تحميل بيانات اشتراكك…</div></div>
