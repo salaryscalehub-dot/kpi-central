@@ -23,7 +23,7 @@
     .plan:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 2px #c69a4a22;background:#fffdf8}.plan input{position:absolute;top:17px;left:16px;accent-color:var(--navy);width:17px;height:17px}.plan strong{display:block;padding-left:25px;color:var(--navy)}.price{display:block;margin-top:6px;color:#8a6934;font-weight:900;font-size:12px}
     .billing{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:0 0 4px;padding:14px;background:#f8f5ef;border-radius:12px}.billing label{display:flex;align-items:center;gap:7px;cursor:pointer;font-weight:800;font-size:12px}.billing input{accent-color:var(--navy)}
     .amount{margin-right:auto;color:var(--navy);font-size:18px;font-weight:900}.save{color:var(--green);font-size:11px;font-weight:800}
-    .bank{display:grid;gap:10px}.bank-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px dashed #d9cdb6;border-radius:12px;background:#fff}.bank-row small{display:block;color:var(--muted);font-size:11px}.bank-row b{color:var(--navy);word-break:break-all}
+    .bank{display:grid;gap:10px;grid-template-columns:repeat(3,minmax(0,1fr))}.grid.g5{grid-template-columns:repeat(5,minmax(0,1fr))}.grid.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.bank-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px dashed #d9cdb6;border-radius:12px;background:#fff}.bank-row small{display:block;color:var(--muted);font-size:11px}.bank-row b{color:var(--navy);word-break:break-all}
     .copy{border:1px solid var(--border);background:#fff;border-radius:8px;padding:6px 12px;font:inherit;font-size:11px;font-weight:800;color:var(--navy);cursor:pointer;white-space:nowrap}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:15px 16px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:800;color:#34465b}
     .field input{width:100%;min-height:44px;border:1px solid #ddd8ce;border-radius:9px;background:#fff;padding:10px 12px;color:var(--text);font:inherit;font-size:13px;outline:none}.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c69a4a20}
@@ -33,9 +33,10 @@
     .center{text-align:center;padding:60px 20px;color:var(--muted)}.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
     .done{text-align:center;padding:34px 20px}.done h2{color:var(--navy);margin:8px 0}.done .icon{font-size:40px}
     .smallprint{text-align:center;color:var(--muted);font-size:10px;padding:0 0 26px}
+    @media(max-width:1000px){.grid.g5,.grid.g4{grid-template-columns:1fr 1fr}.bank{grid-template-columns:1fr}}
     @media(max-width:760px){.summary{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.card{padding:17px}}
     .period{margin:10px 0 0;padding:10px 14px;border-radius:10px;background:#eef5f0;color:#255f31;font-size:13px;font-weight:700}.period .hint{display:block;font-weight:400}.plan.custom{cursor:default;background:#f8f5ef}.plan.custom a{display:inline-block;margin-top:8px;padding:5px 12px;border-radius:8px;background:linear-gradient(135deg,#dfba72,#c4913c);color:var(--navy);text-decoration:none;font-size:11px;font-weight:900}
-    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.amount{width:100%;margin-right:0}.bank-row{flex-direction:column;align-items:flex-start}}
+    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.grid.g5,.grid.g4{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.amount{width:100%;margin-right:0}.bank-row{flex-direction:column;align-items:flex-start}}
   </style>
 </head>
 <body>
@@ -84,23 +85,23 @@
         const interval=wantedInterval==='annual'||wantedInterval==='monthly'?wantedInterval:info.interval;
         const b=info.billing||{};
         html+='<form class="card" id="pay-form" novalidate><h2 class="section-title">1. بيانات الفوترة</h2>'+
-          '<p class="hint" style="margin:-8px 0 14px">تظهر هذه البيانات في الفاتورة الضريبية. جميع الحقول مطلوبة.</p><div class="grid">'+
+          '<p class="hint" style="margin:-8px 0 14px">تظهر هذه البيانات في الفاتورة الضريبية. جميع الحقول مطلوبة.</p><div class="grid g5">'+
           '<div class="field"><label for="b-name">الاسم القانوني للمنشأة *</label><input id="b-name" name="legalName" maxlength="180" value="'+esc(b.legalName)+'"></div>'+
           '<div class="field"><label for="b-email">بريد استلام الفواتير *</label><input id="b-email" name="billingEmail" type="email" dir="ltr" value="'+esc(b.email)+'"></div>'+
           '<div class="field"><label for="b-vat">الرقم الضريبي *</label><input id="b-vat" name="vatNumber" inputmode="numeric" maxlength="20" dir="ltr" placeholder="3XXXXXXXXXXXXX3" value="'+esc(b.vatNumber)+'"></div>'+
           '<div class="field"><label for="b-cr">رقم السجل التجاري *</label><input id="b-cr" name="crNumber" inputmode="numeric" maxlength="14" dir="ltr" value="'+esc(b.crNumber)+'"></div>'+
-          '<div class="field full"><label for="b-addr">العنوان الوطني *</label><input id="b-addr" name="address" maxlength="300" placeholder="رقم المبنى، الشارع، الحي، المدينة، الرمز البريدي" value="'+esc(b.address)+'"></div></div>'+
+          '<div class="field"><label for="b-addr">العنوان الوطني *</label><input id="b-addr" name="address" maxlength="300" placeholder="رقم المبنى، الشارع، الحي، المدينة، الرمز البريدي" value="'+esc(b.address)+'"></div></div>'+
           '<h2 class="section-title" style="margin-top:24px">2. اختر الباقة والفترة</h2><div class="plans">'+
           info.plans.map(p=>p.custom?'<div class="plan custom"><strong>'+esc(p.name)+'</strong><span class="price">سعر مخصص يُتفق عليه حسب احتياج المنشأة</span><a href="/#contact" target="_blank">تواصل معنا</a></div>':'<label class="plan"><input type="radio" name="plan_code" value="'+esc(p.code)+'"'+(p.code===current?' checked':'')+'><strong>'+esc(p.name)+(p.code===info.planCode?' <span class="hint">(باقتك الحالية)</span>':'')+'</strong><span class="price">'+money(p.monthly)+' ريال شهرياً · '+money(p.annual)+' ريال سنوياً</span></label>').join('')+
           '</div><div class="billing"><label><input type="radio" name="billing_interval" value="monthly"'+(interval!=='annual'?' checked':'')+'> شهري</label><label><input type="radio" name="billing_interval" value="annual"'+(interval==='annual'?' checked':'')+'> سنوي</label><span class="save" id="save"></span><output class="amount" id="amount"></output></div><div class="period" id="period"></div>'+
           '<h2 class="section-title" style="margin-top:24px">3. حوّل المبلغ إلى حسابنا</h2><div class="bank">'+
           bankRow('اسم البنك',info.bank.name,false)+bankRow('اسم صاحب الحساب',info.bank.accountName,false)+bankRow('رقم الآيبان',info.bank.iban,true)+'</div>'+
-          '<h2 class="section-title" style="margin-top:24px">4. أرسل بيانات التحويل</h2><div class="grid">'+
+          '<h2 class="section-title" style="margin-top:24px">4. أرسل بيانات التحويل</h2><div class="grid g4">'+
           '<div class="field"><label for="payer">اسم صاحب الحساب المحوِّل *</label><input id="payer" name="payer_name" required maxlength="120"></div>'+
           '<div class="field"><label for="ref">رقم مرجع التحويل</label><input id="ref" name="reference" maxlength="80" dir="ltr"></div>'+
           '<div class="field"><label for="date">تاريخ التحويل *</label><input id="date" name="transfer_date" type="date" required></div>'+
           '<div class="field"><label for="receipt">صورة الإيصال <span class="hint">(صورة أو PDF، حتى 5 ميجابايت)</span></label><input id="receipt" name="receipt" type="file" accept="image/*,application/pdf"></div>'+
-          '<div class="field full"><span class="hint">أدخل رقم المرجع أو أرفق الإيصال، أو كليهما لتسريع المراجعة.</span></div></div>'+
+          '</div><p class="hint" style="margin:10px 0 0">أدخل رقم المرجع أو أرفق الإيصال، أو كليهما لتسريع المراجعة.</p>'+
           '<button class="submit" id="submit" type="submit">إرسال بيانات التحويل</button><div class="status" id="status" role="status"></div></form>';
         app.innerHTML=html;
         const form=document.getElementById('pay-form'),amountEl=document.getElementById('amount'),saveEl=document.getElementById('save'),status=document.getElementById('status'),button=document.getElementById('submit');
